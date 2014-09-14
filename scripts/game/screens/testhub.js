@@ -1,8 +1,13 @@
 define(
 	['pixi', 'engine/base', 'engine/graphics',
 	'engine/classes/Screen', '../npcloader', '../constants',
-	'engine/input', 'engine/geometry', 'engine/arrays'],
-	function(PIXI, engine, Images, Screen, LoadNPCs, constants, Input, Collisions, Arrays) {
+	'engine/input', 'engine/geometry', 'engine/arrays',
+	'./testescape'],
+	function(PIXI, engine, Images,
+			Screen, LoadNPCs, constants,
+			Input, Collisions, Arrays,
+			SampleMiniGame) {
+		
 		TestWorldScreen = new Screen ({
 			init: twsInit,
 			update: twsUpdate,
@@ -437,17 +442,17 @@ define(
 			// this.text.setText(engine.DEBUG_MODE ? (Math.round(Game.fps) + " FPS") : "");
 		}
 
-		function twsOnKeyDown(keyCode)
-		{
+		function twsOnKeyDown(keyCode) {
 			// switch screens on ESC press
-			if (Arrays.containsElement(constants.KEYS_EXIT,keyCode))
-			{
-				//Game.setScreen(TestMenuScreen);
-				Game.setScreen(SampleMiniGame);
+			if (Arrays.containsElement(constants.KEYS_EXIT,keyCode)) {
+				//this.changeScreen(TestMenuScreen);
+				console.log("EEK");
+				console.log(this.nextScreen);
+				this.changeScreen(SampleMiniGame);
 			}
 		}
 
-		function DialogueClear(){
+		function DialogueClear() {
 		TestWorldScreen.dialoguetext.setText("");
 		TestWorldScreen.answer1.setText("");
 		TestWorldScreen.answer2.setText("");

@@ -127,6 +127,7 @@ define(
 
       var next = this.currentScreen.nextScreen;
       if (exists(next) && next !== this.currentScreen) {
+        this.currentScreen.nextScreen = null; // TODO fix this
         this.setScreen(next);
       }
     };

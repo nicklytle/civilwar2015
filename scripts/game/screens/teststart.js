@@ -17,7 +17,7 @@ define(
         this.stage.addChild(this.testWords);
       },
       onMouseDown: function(point) {
-        this.changeScreen(hub); // TODO require this...
+        this.changeScreen(hub);
       },
     });
   }
