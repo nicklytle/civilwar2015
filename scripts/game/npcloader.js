@@ -1,30 +1,32 @@
 // TODO make this not totally crappy
 // TODO make this use JSON
 // TODO seriously
-define(['engine/graphics'], function(Images){
-function LoadNPCs(NPCArray, xmlFile){
+define(
+  ['engine/graphics'],
+  function(graphics){
+    function LoadNPCs(NPCArray, xmlFile){
 
-xmlDoc = loadXMLDoc(xmlFile);
+    xmlDoc = loadXMLDoc(xmlFile);
  
-var name = xmlDoc.getElementsByTagName("name");
-//console.log(name[0].childNodes[0].nodeValue);
-var x = xmlDoc.getElementsByTagName("xpos");
-//console.log(x[0].childNodes[0].nodeValue);
-var y = xmlDoc.getElementsByTagName("ypos");
-//console.log(y[0].childNodes[0].nodeValue); 
-var texture1 = xmlDoc.getElementsByTagName("main_texture");
-//console.log(texture1[0].childNodes[0].nodeValue);
-var texture2 = xmlDoc.getElementsByTagName("interact_texture");
-//console.log(texture2[0].childNodes[0].nodeValue);
-var scale = xmlDoc.getElementsByTagName("scale");
-var XMLdialogue = xmlDoc.getElementsByTagName("dialogue");
+    var name = xmlDoc.getElementsByTagName("name");
+    //console.log(name[0].childNodes[0].nodeValue);
+    var x = xmlDoc.getElementsByTagName("xpos");
+    //console.log(x[0].childNodes[0].nodeValue);
+    var y = xmlDoc.getElementsByTagName("ypos");
+    //console.log(y[0].childNodes[0].nodeValue); 
+    var texture1 = xmlDoc.getElementsByTagName("main_texture");
+    //console.log(texture1[0].childNodes[0].nodeValue);
+    var texture2 = xmlDoc.getElementsByTagName("interact_texture");
+    //console.log(texture2[0].childNodes[0].nodeValue);
+    var scale = xmlDoc.getElementsByTagName("scale");
+    var XMLdialogue = xmlDoc.getElementsByTagName("dialogue");
 
 
 for(var i = 0; i < xmlDoc.getElementsByTagName("NPC").length;i++){
 	
 	var textures = [];
-	textures.push(Images.getTexture(texture1[i].childNodes[0].nodeValue));
-	textures.push(Images.getTexture(texture2[i].childNodes[0].nodeValue));
+	textures.push(graphics.getTexture(texture1[i].childNodes[0].nodeValue));
+	textures.push(graphics.getTexture(texture2[i].childNodes[0].nodeValue));
 	
 	var dialogue = new Object();
 	var answer1 = {};
@@ -37,9 +39,9 @@ for(var i = 0; i < xmlDoc.getElementsByTagName("NPC").length;i++){
 		//Makes NPC.dialogue.<name> a choice for dialogue
 		//NPC's always start with their <intro> (for now)
 		
-		answer1[XMLdialogue[i].childNodes[j].nodeName] = XMLdialogue[i].childNodes[j].attributes.getNamedItem("answer1").nodeValue;
+		answer1[XMLdialogue[i].childNodes[j].nodeName] = XMLdialogue[i].childNodes[j].attributes.getNamedItem("answer1").value;
 		
-		answer2[XMLdialogue[i].childNodes[j].nodeName] = XMLdialogue[i].childNodes[j].attributes.getNamedItem("answer2").nodeValue;
+		answer2[XMLdialogue[i].childNodes[j].nodeName] = XMLdialogue[i].childNodes[j].attributes.getNamedItem("answer2").value;
 
 		
 		}catch(e){}

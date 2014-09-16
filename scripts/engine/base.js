@@ -8,12 +8,12 @@ define({
   MAX_DELTA: 1.0/15, // max time elapsed per frame
   DEFAULT_BACKGROUND_COLOR: 0xBEEFEE, // default bg color of screen
   log: function() {
-    if(this.DEBUG_MODE === true) {
+    if (this.DEBUG_MODE === true) {
       console.log.apply(console, arguments);
     }
   },
   logInput: function() {
-    if(this.DEBUG_INPUT === true) {
+    if (this.DEBUG_INPUT === true) {
       this.log.apply(this, arguments);
     }
   },

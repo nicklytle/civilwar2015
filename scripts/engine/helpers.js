@@ -16,4 +16,11 @@ define({
   checkFunction: function(fn) {
     return this.getDefault(fn, this.nop);
   },
+  updateObject: function(old, updates) {
+    for (var prop in updates) {
+      if (updates.hasOwnProperty(prop)) {
+        old[prop] = updates[prop];
+      }
+    }
+  }
 });

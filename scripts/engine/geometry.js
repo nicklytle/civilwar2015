@@ -1,6 +1,6 @@
 define({
   doRectanglesOverlap: function(a,b,error) { // error > 0 is easier to hit (bigger)
-    if(!exists(error)) {
+    if (!exists(error)) {
       error = 0;
     }
 
@@ -16,7 +16,7 @@ define({
     var T1 = a.y + a.height + error;
     var T2 = b.y + b.height;
 
-    if(R1<L2 || R2<L1 || T1<B2 || T2<B1) {
+    if (R1<L2 || R2<L1 || T1<B2 || T2<B1) {
       return false;
     } else {
       return true;
