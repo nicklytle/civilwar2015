@@ -4,6 +4,7 @@ define(
   function(engine) {
     'use strict';
     return {
+      muted: false,
       files: {},
       loadListeners: {},
       loadArray: function(array) {
@@ -46,7 +47,9 @@ define(
       play: function(name) {
         var sound = this.files[name];
         if (exists(sound)) {
-          (new Audio(sound.src)).play();
+          if (!this.muted) {
+	    (new Audio(sound.src)).play();
+	  }	  
         } else {
           throw ('Sound effect not found: ' + name);
         }
