@@ -21,19 +21,24 @@ console.log("GETHERE");
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
 			var backMap = Images.getTexture("minibg.png");
 			var back = new PIXI.Sprite(backMap);
+			back.scale.x *= .7;
+			back.scale.y *= .7;
 			this.stage.addChild(back);
 			//var this.enemySet = [];
 			this.questions = ["What is your name?","What is your quest?"];
 			this.num_questions = 2;
 			this.answers = ['A','B'];
-			this.playerShip = new enemy_ship(Images.getTexture("ironclad.png"),"Player","","Q");
+			this.playerShip = new enemy_ship(new PIXI.Sprite(Images.getTexture("ironclad.png")),"Player","","Q");
+			this.playerShip.sprite.position.x = 400;
+			this.playerShip.sprite.position.y = 400;
+			this.stage.addChild(this.playerShip.sprite);
 			this.playerLives = 2;
 			this.round = 1;
 			this.enemies = 3;
 			this.yCoord = 0;
 			this.isActiveEnemy = false;
 			this.enemyTexture = [];
-			this.enemyTexture.push(Images.getTexture("woodship2.png"));
+			this.enemyTexture.push(Images.getTexture("woodship.png"));
 			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"blue"});
 			this.answerText1.position.x = 500;
 			this.answerText1.position.y = 500;
@@ -64,8 +69,10 @@ console.log("GETHERE");
 				this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
 				this.stage.addChild(this.enemy.sprite);
 				this.enemy.sprite.position.x = -100;
-				this.yCoord = Math.floor(Math.random() * 400) + 1;
-				this.enemy.sprite.position.y = this.yCoord;
+				this.yCoord = Math.floor(Math.random() * 100) + 1;
+				this.enemy.sprite.position.y = this.yCoord + 300;
+				this.questionText = new PIXI.Text(this.enemy.question,{font:"40px Arial", fill:"black"});
+				this.stage.addChild(this.questionText);
 			}
 			if(this.isActiveEnemy == true){
 				if(this.enemy.sprite.position.x < 300){
@@ -80,6 +87,7 @@ console.log("GETHERE");
 				if(this.enemy.answer == 'A'){
 					this.isActiveEnemy = false;
 					this.stage.removeChild(this.enemy.sprite);
+					this.stage.removeChild(this.questionText);
 				}
 		  }
 		  if(keyCode == 66){
@@ -87,6 +95,7 @@ console.log("GETHERE");
 				if(this.enemy.answer == 'B'){
 					this.isActiveEnemy = false;
 					this.stage.removeChild(this.enemy.sprite);
+					this.stage.removeChild(this.questionText);
 				}
 		  }
 		  //Need to add code to take in a key A, B, C, or D, and check it against the answer to the currently selected question
