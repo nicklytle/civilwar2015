@@ -21,19 +21,26 @@ console.log("GETHERE");
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
 			var backMap = Images.getTexture("minibg.png");
 			var back = new PIXI.Sprite(backMap);
+			back.scale.x *= .7;
+			back.scale.y *= .7;
 			this.stage.addChild(back);
 			//var this.enemySet = [];
 			this.questions = ["What is your name?","What is your quest?"];
 			this.num_questions = 2;
 			this.answers = ['A','B'];
-			this.playerShip = new enemy_ship(Images.getTexture("ironclad.png"),"Player","A or B?","Q");
+
+			this.playerShip = new enemy_ship(new PIXI.Sprite(Images.getTexture("ironclad.png")),"Player","","Q");
+			this.playerShip.sprite.position.x = 370;
+			this.playerShip.sprite.position.y = 200;
+			this.stage.addChild(this.playerShip.sprite);
+
 			this.playerLives = 2;
 			this.round = 1;
 			this.enemies = 3;
 			this.yCoord = 0;
 			this.isActiveEnemy = false;
 			this.enemyTexture = [];
-			this.enemyTexture.push(Images.getTexture("woodship2.png"));
+			this.enemyTexture.push(Images.getTexture("woodship.png"));
 			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"blue"});
 			this.answerText1.position.x = 500;
 			this.answerText1.position.y = 500;
@@ -56,6 +63,7 @@ console.log("GETHERE");
 		  //We should also include logic here to update points, end the game, or spawn enemies
 			if(this.enemies < 1){
 				if(this.round > 3){
+					alert("YOU WIN!");
 					this.changeScreen(TestWorldScreen);
 				}else{
 					this.round = this.round + 1;
@@ -69,9 +77,11 @@ console.log("GETHERE");
 				this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
 				this.stage.addChild(this.enemy.sprite);
 				this.enemy.sprite.position.x = -100;
+
 				this.yCoord = Math.floor(Math.random() * 400) + 1;
 				this.enemy.sprite.position.y = this.yCoord;
-				this.questionText.position.y = this.yCoord+175;
+				this.questionText.position.y = this.yCoord-50;
+
 			}
 			if(this.isActiveEnemy == true){
 				if(this.enemy.sprite.position.x < 300){
@@ -82,22 +92,38 @@ console.log("GETHERE");
 		  },
 		  onKeyDown: function(keyCode)
 		  {
-		  if(keyCode == 65){
-				console.log("PRESSED A");
-				if(this.enemy.answer == 'A'){
-					this.isActiveEnemy = false;
-					this.stage.removeChild(this.enemy.sprite);
-					this.questionText.position.x = -100;
-				}
-		  }
-		  if(keyCode == 66){
-				console.log("PRESSED B");
-				if(this.enemy.answer == 'B'){
-					this.isActiveEnemy = false;
-					this.stage.removeChild(this.enemy.sprite);
-					this.questionText.position.x = -100;
-				}
-		  }
+
+			  this.answerSubmitted = 'A';
+			  if(keyCode == 65){
+					console.log("PRESSED A");
+					/*if(this.enemy.answer == 'A'){
+						this.isActiveEnemy = false;
+						this.stage.removeChild(this.enemy.sprite);
+						this.stage.removeChild(this.questionText);
+					}*/
+			  }
+			  if(keyCode == 66){
+					console.log("PRESSED B");
+					this.answerSubmitted = 'B';
+					/*if(this.enemy.answer == 'B'){
+						this.isActiveEnemy = false;
+						this.stage.removeChild(this.enemy.sprite);
+						this.stage.removeChild(this.questionText);
+					}*/
+			  }
+			  if(this.enemy.isCorrect(this.answerSubmitted)){
+						this.isActiveEnemy = false;
+						this.stage.removeChild(this.enemy.sprite);
+						// this.stage.removeChild(this.questionText);
+						this.questionText.position.x = -100;
+						this.enemies--;
+			  }else{
+						this.playerLives--;
+						if(this.playerLives < 1){
+							alert("YOU LOSE!");
+							this.changeScreen(TestWorldScreen);
+						}
+			  }
 		  //Need to add code to take in a key A, B, C, or D, and check it against the answer to the currently selected question
 			/*if (arrayContains(KEYS_EXIT,keyCode))
 			{

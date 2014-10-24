@@ -2,11 +2,11 @@ define(
 	['pixi', 'engine/base', 'engine/graphics',
 	'engine/classes/Screen', '../npcloader', '../constants',
 	'engine/input', 'engine/geometry', 'engine/arrays',
-	'./testMini'],
+	'./testMini', 'engine/helpers'],
 	function(PIXI, engine, Images,
 			Screen, LoadNPCs, constants,
 			Input, Collisions, Arrays,
-			SampleMiniGame) {
+			SampleMiniGame, helpers) {
 		
 		TestWorldScreen = new Screen ({
 			init: twsInit,
@@ -20,6 +20,7 @@ define(
 
 		function twsInit()
 		{
+			this.updated = false;
 			//Sounds.load("coin.wav");
 			// IMPORTANT:
 			// anything that you want to access
@@ -94,7 +95,7 @@ define(
 			// make him interactive and popup when you click on him
 			this.bunny.interactive = true;
 			this.bunny.mousedown = function () {
-				alert("that tickles!");
+				// alert("that tickles!");
 			};
 
 			// attach him to the stageWorld is at the bottom, because the main character should probably be on top of everything
@@ -240,7 +241,7 @@ define(
 				if (dood == this.bg) { continue; }
 				dood.interactive = true;
 				dood.mousedown = function () {
-					alert( dood.position.x + "," + dood.position.y );
+					// alert( dood.position.x + "," + dood.position.y );
 				};
 				dood.anchor.x = 0.5;
 				dood.anchor.y = 0.5;
@@ -394,7 +395,7 @@ define(
 			// collision detection - remove every obstacle bunny that is touching
 			// our debug character
 			
-			var pBounds = this.bunny.getBounds();
+			// var pBounds = this.bunny.getBounds();
 
 			/*for (var i = 0; i < stageWorld.children.length; i++) {
 				var ob = stageWorld.children[i];
@@ -416,30 +417,84 @@ define(
 				}
 			}
 			*/
-			
 
-			for(var c1 = 0; c1 < this.stage.children.length; c1++) {
-				var ob1 = this.stage.children[c1];
-				if (exists(ob1.collision) && ob1.collision == true) {
-					for(var c2 = 0; c2 < this.stage.children.length; c2++) {
-						var ob2 = this.stage.children[c2];
-						if (c1 != c2 && exists(ob2.collision) && ob2.collision == true) {
-							resolveCollisionWeighted(
-								ob1,
-								ob2,
-								0.5,
-								-10
-							);
+			if (this.updated) {
+				window.player = this.bunny;
+				var player = this.bunny;
+				var geometry = Collisions;
+				var pBounds = player.getBounds();
+				this.AllOfTheNPCs.forEach(function(npc) {
+					var npcBounds = npc.MovieClip.getBounds();
+					var overlap = geometry.getRectangleOverlap(pBounds, npcBounds, -40);
+					if (overlap) {
+						// console.log(overlap);
+						var horizontal = overlap.width < overlap.height;
+						if (horizontal) {
+							var reverse = (npcBounds.x + npcBounds.width/2.0) > 
+								(pBounds.x + pBounds.width / 2.0);
+							console.log(reverse);
+							player.position.x += overlap.width * (reverse ? -1 : 1);
+						} else {
+							var reverse = (npcBounds.y + npcBounds.height/2.0) > 
+								(pBounds.y + pBounds.height / 2.0);
+							player.position.y += overlap.height * (reverse ? -1 : 1);
 						}
 					}
-				}
+				});
 			}
+
+			if (this.updated) {
+				var self = this;
+				var l = [player];
+				this.AllOfTheNPCs.forEach(function(npc) {
+					var mc = npc.MovieClip;
+					l.push(mc);
+					self.stage.removeChild(mc);
+				});
+				l.sort(helpers.spriteZSort);
+				l.forEach(function(child) {
+					self.stage.addChild(child);
+				});
+			}
+
+
+			// var self = this;
+			// if (this.updated) {
+			// 	this.AllOfTheNPCs.forEach(function(npc) {
+			// 		if (npc._rect) return;
+			// 		npc._rect = true;
+			// 		var b = npc.MovieClip.getBounds();
+			// 		var gfx = new PIXI.Graphics();
+			// 		gfx.beginFill(0x00FFFF);
+			// 		gfx.drawRect(b.x, b.y, b.width, b.height);
+			// 		self.stage.addChild(gfx);
+			// 	});
+			// }
+			
+
+			// for(var c1 = 0; c1 < this.stage.children.length; c1++) {
+			// 	var ob1 = this.stage.children[c1];
+			// 	if (exists(ob1.collision) && ob1.collision == true) {
+			// 		for(var c2 = 0; c2 < this.stage.children.length; c2++) {
+			// 			var ob2 = this.stage.children[c2];
+			// 			if (c1 != c2 && exists(ob2.collision) && ob2.collision == true) {
+			// 				resolveCollisionWeighted(
+			// 					ob1,
+			// 					ob2,
+			// 					0.5,
+			// 					-10
+			// 				);
+			// 			}
+			// 		}
+			// 	}
+			// }
 			//this.stage.children.sort(spriteZSort);
 
 			this.centerCameraPosition(bunny.position.x, bunny.position.y, constants.STAGE_W, constants.STAGE_H);
 
 			// TODO game fps.....
 			// this.text.setText(engine.DEBUG_MODE ? (Math.round(Game.fps) + " FPS") : "");
+			this.updated = true;
 		}
 
 		function twsOnKeyDown(keyCode) {
