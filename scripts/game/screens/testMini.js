@@ -31,7 +31,9 @@ function(PIXI, Screen, Images, Collisions) {
 			var this.round = 1;
 			var this.enemies = 3;
 			var this.yCoord = 0;
-			var this.isActiveEnemy = false;
+			var this.isActiveEnemy = false
+			var enemyTexture = [];
+			enemyTexture.push(Images.getTexture("node.png"));
 			//Array of questions, randomly chosen, 3 lives per round, round length increases
 			//Keys A and B 65 and 66
 		  },
@@ -50,11 +52,17 @@ function(PIXI, Screen, Images, Collisions) {
 			if(this.isActiveEnemy == false){
 				this.isActiveEnemy = true;
 				var this.randomIndex = Math.floor(Math.random() * this.num_questions) + 1;
-				this.enemy = new enemy_ship(,"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
+				this.enemy = new enemy_ship(new PIXI.MovieClip(enemyTexture),"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
 				this.stage.addChild(enemy.sprite);
-				tempnode.sprite.position.x = -100;
+				enemy.sprite.position.x = -100;
 				this.yCoord = Math.floor(Math.random() * constants.STAGE_H) + 1;
-				tempnode.sprite.position.y = this.yCoord;
+				enemy.sprite.position.y = this.yCoord;
+				this.stage.addChild(this.enemy);
+			}
+			if(this.isActiveEnemy == true){
+				if(this.enemy.sprite.position.x < 200){
+					this.enemy.sprite.position.x++;
+				}
 			}
 		  },
 		  onKeyDown: function(keyCode)
