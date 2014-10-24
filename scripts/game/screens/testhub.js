@@ -2,7 +2,7 @@ define(
 	['pixi', 'engine/base', 'engine/graphics',
 	'engine/classes/Screen', '../npcloader', '../constants',
 	'engine/input', 'engine/geometry', 'engine/arrays',
-	'./testescape'],
+	'./testMini'],
 	function(PIXI, engine, Images,
 			Screen, LoadNPCs, constants,
 			Input, Collisions, Arrays,
