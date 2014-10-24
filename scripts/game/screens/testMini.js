@@ -6,7 +6,17 @@ function(PIXI, Screen, Images, Collisions) {
 		init: function(){
 				//Need to declare a "ship" type to match questions, answers, and sprites
 				function enemy_ship(sprite, name, question, answer){
-				
+					this.sprite = sprite;
+					this.name = name;
+					this.question = question;
+					this.answer = answer;
+					this.isCorrect = function(ans){
+						if(ans == answer){
+							return true;
+						}else{
+							return false;
+						}
+					}
 				}
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
 
