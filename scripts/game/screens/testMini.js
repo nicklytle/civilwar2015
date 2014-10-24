@@ -25,9 +25,99 @@ console.log("GETHERE");
 			back.scale.y *= .7;
 			this.stage.addChild(back);
 			//var this.enemySet = [];
-			this.questions = ["What is your name?","What is your quest?"];
-			this.num_questions = 2;
-			this.answers = ['A','B'];
+			this.questions = ["Abraham Lincoln",
+			"People favored tariffs",
+			"General Edwin M. Stanton",
+			"Bigger Army",
+			"Less Rigid Military Leadership",
+			"Frederick Douglas",
+			"Won",
+			"Robert Smalls",
+			"Naval Dominance of Southern Ports",
+			"Clara Barton",
+			"William Lloyd Garrison",
+			"General Scott",
+			"Urban Society",
+			"Anaconda Plan",
+			"More Soldiers on Side Lost",
+			"General Ulysses S. Grant",
+			"Capital is Washington D.C.",
+			"Battle Hymn of the Republic",
+			"Gettysburg Victory",
+			"Battle of Vicksburg Victory",
+			"Industrial","Textile Industry",
+			"General Sherman","Monitor",
+			"Battle of Appomattox Court House Victory",
+			"General McClellan",
+			"General Custer",
+			"Stars and Stripes",
+			"African Americans were soldiers",
+			"Battle of Petersburg Victory",
+			"General Meade",
+			"General Robert E. Lee",
+			"Thomas “Stonewall” Jackson",
+			"Jefferson Davis",
+			"Capital is Richmond",
+			"“Dixie”",
+			"Fort Sumter Victory",
+			"First Battle of Bull Run Victory",
+			"Second Battle of Bull Run Victory",
+			"Rebel Yell",
+			"California",
+			"New Hampshire",
+			"Connecticut",
+			"New Jersey",
+			"Illinois",
+			"New York",
+			"Indiana",
+			"Ohio",
+			"Iowa",
+			"Oregon",
+			"Kansas",
+			"Pennsylvania",
+			"Maine",
+			"Rhode Island",
+			"Massachusetts",
+			"Vermont",
+			"Michigan",
+			"West Virginia",
+			"European Trading",
+			"Minnesota",
+			"Wisconsin",
+			"Merrimack",
+			"State’s Rights",
+			"Stars and Bars",
+			"Battle of Fredericksburg Victory",
+			"Battle of Chancellorsville Victory",
+			"Northern Virginia Campaign Victory",
+			"Believed Slavery was Immoral",
+			"Lost",
+			"King Cotton",
+			"Less Soldiers on Side Lost",
+			"Smaller Army",
+			"General Pickett’s Charge",
+			"Fired First Shot",
+			"People opposed tariffs",
+			"Economy mainly agricultural",
+			"Believed they had right to declare any national law illegal",
+			"Troops were very young",
+			"African Americans were laborers",
+			"Alabama",
+			"North Carolina",
+			"Arkansas",
+			"South Carolina",
+			"Agricultural Society",
+			"Larger Navy",
+			"More Railroad Lines",
+			"Florida","Tennessee",
+			"Georgia",
+			"Texas",
+			"Louisiana",
+			"Virginia",
+			"Mississippi",
+			"Best Military Officers"];
+			this.num_questions = 90;
+			this.answers = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B'];
 
 			this.playerShip = new enemy_ship(new PIXI.Sprite(Images.getTexture("ironclad.png")),"Player","","Q");
 			this.playerShip.sprite.position.x = 370;
@@ -56,10 +146,10 @@ console.log("GETHERE");
 			this.livesText.position.x = 550;
 			this.livesText.position.y = 0;
 			this.stage.addChild(this.livesText);
-			this.questionText = new PIXI.Text(this.questions[0],{font:"30px Arial ", fill:"red"});
-            this.questionText.position.x = -100;
-            this.questionText.position.y = 450;
-            this.stage.addChild(this.questionText);
+			//this.questionText = new PIXI.Text(this.questions[0],{font:"30px Arial ", fill:"red"});
+            //this.questionText.position.x = -100;
+            //this.questionText.position.y = 450;
+            //this.stage.addChild(this.questionText);
 			//Array of questions, randomly chosen, 3 lives per round, round length increases
 			//Keys A and B 65 and 66
 		  },
@@ -96,7 +186,10 @@ console.log("GETHERE");
 				this.enemy.sprite.position.x = -100;
 				this.yCoord = Math.floor(Math.random() * 100) + 1;
 				this.enemy.sprite.position.y = this.yCoord + 300;
+				this.questionText = new PIXI.Text(this.questions[this.randomIndex],{font:"30px Arial ", fill:"red"});
+				this.questionText.position.x = -100;
 				this.questionText.position.y = this.yCoord-50 + 300;
+				this.stage.addChild(this.questionText);
 			}
 			if(this.isActiveEnemy == true){
 				if(this.enemy.sprite.position.x < 240){
@@ -131,6 +224,7 @@ console.log("GETHERE");
 						this.stage.removeChild(this.enemy.sprite);
 						// this.stage.removeChild(this.questionText);
 						this.questionText.position.x = -100;
+						this.stage.removeChild(this.questionText)
 						this.enemies--;
 			  }else{
 						this.stage.removeChild(this.livesText);
