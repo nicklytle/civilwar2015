@@ -19,21 +19,29 @@ console.log("GETHERE");
 		init: function(){
 				//Need to declare a "ship" type to match questions, answers, and sprites
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
-			//var backMap = Images.getTexture("map.png");
-			//var back = new PIXI.Sprite(backMap);
-			//this.stage.addChild(back);
+			var backMap = Images.getTexture("minibg.png");
+			var back = new PIXI.Sprite(backMap);
+			this.stage.addChild(back);
 			//var this.enemySet = [];
-			this.questions = [];
-			this.num_questions = 0;
-			this.answers = [];
-			this.playerShip = new enemy_ship(Images.getTexture("node.png"),"Player","","Q");
+			this.questions = ["What is your name?","What is your quest?"];
+			this.num_questions = 2;
+			this.answers = ['A','B'];
+			this.playerShip = new enemy_ship(Images.getTexture("ironclad.png"),"Player","","Q");
 			this.playerLives = 2;
 			this.round = 1;
 			this.enemies = 3;
 			this.yCoord = 0;
 			this.isActiveEnemy = false;
-			var enemyTexture = [];
-			enemyTexture.push(Images.getTexture("node.png"));
+			this.enemyTexture = [];
+			this.enemyTexture.push(Images.getTexture("woodship2.png"));
+			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"blue"});
+			this.answerText1.position.x = 500;
+			this.answerText1.position.y = 500;
+			this.stage.addChild(this.answerText1);
+			this.answerText2 = new PIXI.Text("B: CONFEDERACY",{font:"30px Arial ", fill:"gray"});
+			this.answerText2.position.x = 500;
+			this.answerText2.position.y = 550;
+			this.stage.addChild(this.answerText2);
 			//Array of questions, randomly chosen, 3 lives per round, round length increases
 			//Keys A and B 65 and 66
 		  },
@@ -51,27 +59,41 @@ console.log("GETHERE");
 			}
 			if(this.isActiveEnemy == false){
 				this.isActiveEnemy = true;
-				this.randomIndex = Math.floor(Math.random() * this.num_questions) + 1;
-				this.enemy = new enemy_ship(new PIXI.MovieClip(enemyTexture),"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
-				this.stage.addChild(enemy.sprite);
-				enemy.sprite.position.x = -100;
-				this.yCoord = Math.floor(Math.random() * constants.STAGE_H) + 1;
-				enemy.sprite.position.y = this.yCoord;
-				this.stage.addChild(this.enemy);
+				this.randomIndex = Math.floor(Math.random() * this.num_questions);
+				console.log(this.randomIndex);
+				this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
+				this.stage.addChild(this.enemy.sprite);
+				this.enemy.sprite.position.x = -100;
+				this.yCoord = Math.floor(Math.random() * 400) + 1;
+				this.enemy.sprite.position.y = this.yCoord;
 			}
-			/*if(this.isActiveEnemy == true){
-				if(this.enemy.sprite.position.x < 200){
+			if(this.isActiveEnemy == true){
+				if(this.enemy.sprite.position.x < 300){
 					this.enemy.sprite.position.x++;
 				}
-			}*/
+			}
 		  },
 		  onKeyDown: function(keyCode)
 		  {
+		  if(keyCode == 65){
+				console.log("PRESSED A");
+				if(this.enemy.answer == 'A'){
+					this.isActiveEnemy = false;
+					this.stage.removeChild(this.enemy.sprite);
+				}
+		  }
+		  if(keyCode == 66){
+				console.log("PRESSED B");
+				if(this.enemy.answer == 'B'){
+					this.isActiveEnemy = false;
+					this.stage.removeChild(this.enemy.sprite);
+				}
+		  }
 		  //Need to add code to take in a key A, B, C, or D, and check it against the answer to the currently selected question
-			if (arrayContains(KEYS_EXIT,keyCode))
+			/*if (arrayContains(KEYS_EXIT,keyCode))
 			{
 			  this.changeScreen(TestWorldScreen);
-			}
+			}*/
 		  },
 		  onMouseDown: function(point)
 		  {
