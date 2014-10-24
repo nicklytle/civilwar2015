@@ -28,6 +28,7 @@ console.log("GETHERE");
 			this.questions = ["What is your name?","What is your quest?"];
 			this.num_questions = 2;
 			this.answers = ['A','B'];
+
 			this.playerShip = new enemy_ship(new PIXI.Sprite(Images.getTexture("ironclad.png")),"Player","","Q");
 			this.playerShip.sprite.position.x = 370;
 			this.playerShip.sprite.position.y = 240;
@@ -55,7 +56,6 @@ console.log("GETHERE");
 			this.livesText.position.x = 550;
 			this.livesText.position.y = 0;
 			this.stage.addChild(this.livesText);
-			
 			//Array of questions, randomly chosen, 3 lives per round, round length increases
 			//Keys A and B 65 and 66
 		  },
@@ -90,19 +90,20 @@ console.log("GETHERE");
 				this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
 				this.stage.addChild(this.enemy.sprite);
 				this.enemy.sprite.position.x = -100;
-				this.yCoord = Math.floor(Math.random() * 100) + 1;
-				this.enemy.sprite.position.y = this.yCoord + 300;
-				//this.questionText = new PIXI.Text(this.enemy.question,{font:"40px Arial", fill:"black"});
-				//this.stage.addChild(this.questionText);
+				this.yCoord = Math.floor(Math.random() * 400) + 1;
+				this.enemy.sprite.position.y = this.yCoord;
+				this.questionText.position.y = this.yCoord-50;
 			}
 			if(this.isActiveEnemy == true){
 				if(this.enemy.sprite.position.x < 240){
 					this.enemy.sprite.position.x++;
+					this.questionText.position.x++;
 				}
 			}
 		  },
 		  onKeyDown: function(keyCode)
 		  {
+
 			  this.answerSubmitted = 'A';
 			  if(keyCode == 65){
 					console.log("PRESSED A");
@@ -124,7 +125,8 @@ console.log("GETHERE");
 			  if(this.enemy.isCorrect(this.answerSubmitted)){
 						this.isActiveEnemy = false;
 						this.stage.removeChild(this.enemy.sprite);
-						this.stage.removeChild(this.questionText);
+						// this.stage.removeChild(this.questionText);
+						this.questionText.position.x = -100;
 						this.enemies--;
 			  }else{
 						this.stage.removeChild(this.livesText);
