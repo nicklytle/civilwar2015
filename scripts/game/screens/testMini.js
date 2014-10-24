@@ -30,9 +30,9 @@ console.log("GETHERE");
 			this.answers = ['A','B'];
 			this.playerShip = new enemy_ship(new PIXI.Sprite(Images.getTexture("ironclad.png")),"Player","","Q");
 			this.playerShip.sprite.position.x = 370;
-			this.playerShip.sprite.position.y = 200;
+			this.playerShip.sprite.position.y = 240;
 			this.stage.addChild(this.playerShip.sprite);
-			this.playerLives = 2;
+			this.playerLives = 3;
 			this.round = 1;
 			this.enemies = 3;
 			this.yCoord = 0;
@@ -47,6 +47,15 @@ console.log("GETHERE");
 			this.answerText2.position.x = 500;
 			this.answerText2.position.y = 550;
 			this.stage.addChild(this.answerText2);
+			this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
+			this.roundText.position.x = 0;
+			this.roundText.position.y = 0;
+			this.stage.addChild(this.roundText);
+			this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
+			this.livesText.position.x = 550;
+			this.livesText.position.y = 0;
+			this.stage.addChild(this.livesText);
+			
 			//Array of questions, randomly chosen, 3 lives per round, round length increases
 			//Keys A and B 65 and 66
 		  },
@@ -59,8 +68,19 @@ console.log("GETHERE");
 					alert("YOU WIN!");
 					this.changeScreen(TestWorldScreen);
 				}else{
+					this.stage.removeChild(this.roundText);
+					this.stage.removeChile(this.livesText);
 					this.round = this.round + 1;
 					this.enemies = this.round * 3;
+					this.playerLives = 3;
+					this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
+					this.roundText.position.x = 0;
+					this.roundText.position.y = 0;
+					this.stage.addChild(this.roundText);
+					this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
+					this.livesText.position.x = 550;
+					this.livesText.position.y = 0;
+					this.stage.addChild(this.livesText);
 				}
 			}
 			if(this.isActiveEnemy == false){
@@ -72,11 +92,11 @@ console.log("GETHERE");
 				this.enemy.sprite.position.x = -100;
 				this.yCoord = Math.floor(Math.random() * 100) + 1;
 				this.enemy.sprite.position.y = this.yCoord + 300;
-				this.questionText = new PIXI.Text(this.enemy.question,{font:"40px Arial", fill:"black"});
-				this.stage.addChild(this.questionText);
+				//this.questionText = new PIXI.Text(this.enemy.question,{font:"40px Arial", fill:"black"});
+				//this.stage.addChild(this.questionText);
 			}
 			if(this.isActiveEnemy == true){
-				if(this.enemy.sprite.position.x < 300){
+				if(this.enemy.sprite.position.x < 240){
 					this.enemy.sprite.position.x++;
 				}
 			}
@@ -107,7 +127,12 @@ console.log("GETHERE");
 						this.stage.removeChild(this.questionText);
 						this.enemies--;
 			  }else{
+						this.stage.removeChild(this.livesText);
 						this.playerLives--;
+						this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
+						this.livesText.position.x = 550;
+						this.livesText.position.y = 0;
+						this.stage.addChild(this.livesText);
 						if(this.playerLives < 1){
 							alert("YOU LOSE!");
 							this.changeScreen(TestWorldScreen);
