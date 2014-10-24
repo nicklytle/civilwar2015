@@ -56,6 +56,10 @@ console.log("GETHERE");
 			this.livesText.position.x = 550;
 			this.livesText.position.y = 0;
 			this.stage.addChild(this.livesText);
+			this.questionText = new PIXI.Text(this.questions[0],{font:"30px Arial ", fill:"red"});
+            this.questionText.position.x = -100;
+            this.questionText.position.y = 450;
+            this.stage.addChild(this.questionText);
 			//Array of questions, randomly chosen, 3 lives per round, round length increases
 			//Keys A and B 65 and 66
 		  },
@@ -69,7 +73,7 @@ console.log("GETHERE");
 					this.changeScreen(TestWorldScreen);
 				}else{
 					this.stage.removeChild(this.roundText);
-					this.stage.removeChile(this.livesText);
+					this.stage.removeChild(this.livesText);
 					this.round = this.round + 1;
 					this.enemies = this.round * 3;
 					this.playerLives = 3;
@@ -90,9 +94,9 @@ console.log("GETHERE");
 				this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
 				this.stage.addChild(this.enemy.sprite);
 				this.enemy.sprite.position.x = -100;
-				this.yCoord = Math.floor(Math.random() * 400) + 1;
-				this.enemy.sprite.position.y = this.yCoord;
-				this.questionText.position.y = this.yCoord-50;
+				this.yCoord = Math.floor(Math.random() * 100) + 1;
+				this.enemy.sprite.position.y = this.yCoord + 300;
+				this.questionText.position.y = this.yCoord-50 + 300;
 			}
 			if(this.isActiveEnemy == true){
 				if(this.enemy.sprite.position.x < 240){
