@@ -29,8 +29,8 @@ console.log("GETHERE");
 			this.num_questions = 2;
 			this.answers = ['A','B'];
 			this.playerShip = new enemy_ship(new PIXI.Sprite(Images.getTexture("ironclad.png")),"Player","","Q");
-			this.playerShip.sprite.position.x = 400;
-			this.playerShip.sprite.position.y = 400;
+			this.playerShip.sprite.position.x = 370;
+			this.playerShip.sprite.position.y = 200;
 			this.stage.addChild(this.playerShip.sprite);
 			this.playerLives = 2;
 			this.round = 1;
@@ -56,6 +56,7 @@ console.log("GETHERE");
 		  //We should also include logic here to update points, end the game, or spawn enemies
 			if(this.enemies < 1){
 				if(this.round > 3){
+					alert("YOU WIN!");
 					this.changeScreen(TestWorldScreen);
 				}else{
 					this.round = this.round + 1;
@@ -82,22 +83,36 @@ console.log("GETHERE");
 		  },
 		  onKeyDown: function(keyCode)
 		  {
-		  if(keyCode == 65){
-				console.log("PRESSED A");
-				if(this.enemy.answer == 'A'){
-					this.isActiveEnemy = false;
-					this.stage.removeChild(this.enemy.sprite);
-					this.stage.removeChild(this.questionText);
-				}
-		  }
-		  if(keyCode == 66){
-				console.log("PRESSED B");
-				if(this.enemy.answer == 'B'){
-					this.isActiveEnemy = false;
-					this.stage.removeChild(this.enemy.sprite);
-					this.stage.removeChild(this.questionText);
-				}
-		  }
+			  this.answerSubmitted = 'A';
+			  if(keyCode == 65){
+					console.log("PRESSED A");
+					/*if(this.enemy.answer == 'A'){
+						this.isActiveEnemy = false;
+						this.stage.removeChild(this.enemy.sprite);
+						this.stage.removeChild(this.questionText);
+					}*/
+			  }
+			  if(keyCode == 66){
+					console.log("PRESSED B");
+					this.answerSubmitted = 'B';
+					/*if(this.enemy.answer == 'B'){
+						this.isActiveEnemy = false;
+						this.stage.removeChild(this.enemy.sprite);
+						this.stage.removeChild(this.questionText);
+					}*/
+			  }
+			  if(this.enemy.isCorrect(this.answerSubmitted)){
+						this.isActiveEnemy = false;
+						this.stage.removeChild(this.enemy.sprite);
+						this.stage.removeChild(this.questionText);
+						this.enemies--;
+			  }else{
+						this.playerLives--;
+						if(this.playerLives < 1){
+							alert("YOU LOSE!");
+							this.changeScreen(TestWorldScreen);
+						}
+			  }
 		  //Need to add code to take in a key A, B, C, or D, and check it against the answer to the currently selected question
 			/*if (arrayContains(KEYS_EXIT,keyCode))
 			{
