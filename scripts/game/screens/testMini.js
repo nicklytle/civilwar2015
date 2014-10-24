@@ -1,10 +1,7 @@
 define(
   ['pixi', 'engine/classes/Screen', 'engine/graphics', 'engine/geometry'],
 function(PIXI, Screen, Images, Collisions) {
-
-	SampleMiniGame = new Screen({
-		init: function(){
-				//Need to declare a "ship" type to match questions, answers, and sprites
+console.log("GETHERE");
 				function enemy_ship(sprite, name, question, answer){
 					this.sprite = sprite;
 					this.name = name;
@@ -18,20 +15,23 @@ function(PIXI, Screen, Images, Collisions) {
 						}
 					}
 				}
+	var SampleMiniGame = new Screen({
+		init: function(){
+				//Need to declare a "ship" type to match questions, answers, and sprites
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
 			//var backMap = Images.getTexture("map.png");
 			//var back = new PIXI.Sprite(backMap);
 			//this.stage.addChild(back);
 			//var this.enemySet = [];
-			var this.questions = [];
-			var this.num_questions = 0;
-			var this.answers = [];
-			var this.playerShip = enemy_ship(,"Player","","Q");
-			var this.playerLives = 2;
-			var this.round = 1;
-			var this.enemies = 3;
-			var this.yCoord = 0;
-			var this.isActiveEnemy = false
+			this.questions = [];
+			this.num_questions = 0;
+			this.answers = [];
+			this.playerShip = new enemy_ship(Images.getTexture("node.png"),"Player","","Q");
+			this.playerLives = 2;
+			this.round = 1;
+			this.enemies = 3;
+			this.yCoord = 0;
+			this.isActiveEnemy = false;
 			var enemyTexture = [];
 			enemyTexture.push(Images.getTexture("node.png"));
 			//Array of questions, randomly chosen, 3 lives per round, round length increases
@@ -51,7 +51,7 @@ function(PIXI, Screen, Images, Collisions) {
 			}
 			if(this.isActiveEnemy == false){
 				this.isActiveEnemy = true;
-				var this.randomIndex = Math.floor(Math.random() * this.num_questions) + 1;
+				this.randomIndex = Math.floor(Math.random() * this.num_questions) + 1;
 				this.enemy = new enemy_ship(new PIXI.MovieClip(enemyTexture),"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
 				this.stage.addChild(enemy.sprite);
 				enemy.sprite.position.x = -100;
@@ -59,11 +59,11 @@ function(PIXI, Screen, Images, Collisions) {
 				enemy.sprite.position.y = this.yCoord;
 				this.stage.addChild(this.enemy);
 			}
-			if(this.isActiveEnemy == true){
+			/*if(this.isActiveEnemy == true){
 				if(this.enemy.sprite.position.x < 200){
 					this.enemy.sprite.position.x++;
 				}
-			}
+			}*/
 		  },
 		  onKeyDown: function(keyCode)
 		  {
@@ -79,6 +79,7 @@ function(PIXI, Screen, Images, Collisions) {
 
 		  }
 	});
+	console.log("WTFMATE");
 	  return SampleMiniGame;
   }
 );

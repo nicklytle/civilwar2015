@@ -40,7 +40,7 @@ function(PIXI, Screen, Images, Collisions) {
 		}
 	}
 
-	SampleMiniGame = new Screen({
+	var SampleMiniGame = new Screen({
 		init: function(){
 				/*
 				There's an issue where on occasion the necessary assets don't load.
