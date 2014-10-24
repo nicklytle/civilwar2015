@@ -33,7 +33,9 @@ Add conditionals to dialogue
 		<interact_texture>femalevillager.png</interact_texture>
 		<scale>0.2</scale>
 		<dialogue>
-			<intro>The men keep talking of a coming separation. Will my son have to go and fight?</intro>
+			<intro answer1="Yes" answer2="No">Did you hear about the battle at Hampton Roads?</intro>
+			<Yes>Can you imagine? Iron ships! Apparently that man over there was present during the battle!</Yes>
+			<No>A huge battle between two iron ships!  That young man over there was on one of them.</No>
 		</dialogue>
 	</NPC>
 	<NPC>
@@ -44,7 +46,7 @@ Add conditionals to dialogue
 		<interact_texture>femalevillager2.png</interact_texture>
 		<scale>0.2</scale>
 		<dialogue>
-			<intro>General Lee is such a gentleman!</intro>
+			<intro>That Union Soldier told me he just came back from Newport News.</intro>
 		</dialogue>
 	</NPC>
 	<NPC>
@@ -99,7 +101,9 @@ Add conditionals to dialogue
 		<interact_texture>unionsoldier.png</interact_texture>
 		<scale>0.2</scale>
 		<dialogue>
-			<intro>We'll beat the rebels! Those Confederates are lazy traitors!</intro>
+			<intro answer1="Absolutely" answer2="No">Do you have time to hear about my experiences on the Monitor?</intro>
+			<Absolutely>Cool! (psst. press escape)</Absolutely>
+			<No>Maybe some other time then.</No>
 		</dialogue>
 	</NPC>
 	<NPC>
@@ -126,18 +130,18 @@ Add conditionals to dialogue
 	</NPC>
 	
 	<NPC>
-		<name>A newspaper</name>
+		<name>Daily Richmond Examiner</name>
 		<xpos>600</xpos>
 		<ypos>600</ypos>
 		<main_texture>newspaper.png</main_texture>
 		<interact_texture>newspaper.png</interact_texture>
 		<scale>0.2</scale>
 		<dialogue>
-			<intro>Brooks Canes Sumner! 'The fragments of the stick are begged for as sacred relics' says Brooks.</intro>
+			<intro>Two Ironclads fight intense battle outside Newport News!</intro>
 		</dialogue>
 	</NPC>
 	<NPC>
-		<name>Another newspaper</name>
+		<name>Daily Richmond Examiner.</name>
 		<xpos>0</xpos>
 		<ypos>150</ypos>
 		<main_texture>newspaper.png</main_texture>
@@ -148,7 +152,7 @@ Add conditionals to dialogue
 		</dialogue>
 	</NPC>
 	<NPC>
-		<name>A third newspaper</name>
+		<name>Daily   Richmond Examiner</name>
 		<xpos>800</xpos>
 		<ypos>300</ypos>
 		<main_texture>newspaper.png</main_texture>
@@ -159,7 +163,7 @@ Add conditionals to dialogue
 		</dialogue>
 	</NPC>
 	<NPC>
-		<name>A fourth newspaper</name>
+		<name>Daily  Richmond Examiner</name>
 		<xpos>200</xpos>
 		<ypos>400</ypos>
 		<main_texture>newspaper.png</main_texture>
