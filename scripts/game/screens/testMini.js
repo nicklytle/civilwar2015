@@ -26,7 +26,7 @@ console.log("GETHERE");
 			this.questions = ["What is your name?","What is your quest?"];
 			this.num_questions = 2;
 			this.answers = ['A','B'];
-			this.playerShip = new enemy_ship(Images.getTexture("ironclad.png"),"Player","","Q");
+			this.playerShip = new enemy_ship(Images.getTexture("ironclad.png"),"Player","A or B?","Q");
 			this.playerLives = 2;
 			this.round = 1;
 			this.enemies = 3;
@@ -42,6 +42,11 @@ console.log("GETHERE");
 			this.answerText2.position.x = 500;
 			this.answerText2.position.y = 550;
 			this.stage.addChild(this.answerText2);
+
+			this.questionText = new PIXI.Text(this.questions[0],{font:"30px Arial ", fill:"red"});
+			this.questionText.position.x = -100;
+			this.questionText.position.y = 450;
+			this.stage.addChild(this.questionText);
 			//Array of questions, randomly chosen, 3 lives per round, round length increases
 			//Keys A and B 65 and 66
 		  },
@@ -66,10 +71,12 @@ console.log("GETHERE");
 				this.enemy.sprite.position.x = -100;
 				this.yCoord = Math.floor(Math.random() * 400) + 1;
 				this.enemy.sprite.position.y = this.yCoord;
+				this.questionText.position.y = this.yCoord+175;
 			}
 			if(this.isActiveEnemy == true){
 				if(this.enemy.sprite.position.x < 300){
 					this.enemy.sprite.position.x++;
+					this.questionText.position.x++;
 				}
 			}
 		  },
@@ -80,6 +87,7 @@ console.log("GETHERE");
 				if(this.enemy.answer == 'A'){
 					this.isActiveEnemy = false;
 					this.stage.removeChild(this.enemy.sprite);
+					this.questionText.position.x = -100;
 				}
 		  }
 		  if(keyCode == 66){
@@ -87,6 +95,7 @@ console.log("GETHERE");
 				if(this.enemy.answer == 'B'){
 					this.isActiveEnemy = false;
 					this.stage.removeChild(this.enemy.sprite);
+					this.questionText.position.x = -100;
 				}
 		  }
 		  //Need to add code to take in a key A, B, C, or D, and check it against the answer to the currently selected question
