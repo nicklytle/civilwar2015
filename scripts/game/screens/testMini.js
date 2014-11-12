@@ -19,6 +19,9 @@ console.log("GETHERE");
 		init: function(){
 				//Need to declare a "ship" type to match questions, answers, and sprites
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
+			  
+			this.cheat_arr=[38,38,40,40,37,39,37,39,66,65];
+			this.cheat_index = 0;
 			var backMap = Images.getTexture("minibg.png");
 			var back = new PIXI.Sprite(backMap);
 			back.scale.x *= .7;
@@ -78,7 +81,7 @@ console.log("GETHERE");
 			"General Robert E. Lee",
 			"Thomas “Stonewall” Jackson",
 			"Jefferson Davis",
-			"Capital is Richmond",
+			"Capital was Richmond",
 			"“Dixie”",
 			"Fort Sumter Victory",
 			"First Battle of Bull Run Victory",
@@ -167,7 +170,7 @@ console.log("GETHERE");
 					this.stage.removeChild(this.livesText);
 					this.round = this.round + 1;
 					this.enemies = this.round * 3;
-					this.playerLives = 3;
+					this.playerLives = this.playerLives + 3;
 					this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
 					this.roundText.position.x = 0;
 					this.roundText.position.y = 0;
@@ -211,7 +214,7 @@ console.log("GETHERE");
 						this.stage.removeChild(this.questionText);
 					}*/
 			  }
-			  if(keyCode == 66){
+			  else if(keyCode == 66){
 					console.log("PRESSED B");
 					this.answerSubmitted = 'B';
 					/*if(this.enemy.answer == 'B'){
@@ -219,25 +222,40 @@ console.log("GETHERE");
 						this.stage.removeChild(this.enemy.sprite);
 						this.stage.removeChild(this.questionText);
 					}*/
-			  }
-			  if(this.enemy.isCorrect(this.answerSubmitted)){
-						this.isActiveEnemy = false;
-						this.stage.removeChild(this.enemy.sprite);
-						// this.stage.removeChild(this.questionText);
-						this.questionText.position.x = -100;
-						this.stage.removeChild(this.questionText)
-						this.enemies--;
 			  }else{
-						this.stage.removeChild(this.livesText);
-						this.playerLives--;
-						this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
-						this.livesText.position.x = 550;
-						this.livesText.position.y = 0;
-						this.stage.addChild(this.livesText);
-						if(this.playerLives < 1){
-							alert("YOU LOSE!");
-							this.changeScreen(TestWorldScreen);
-						}
+				this.answerSubmitted = '';
+			  }
+			  
+			  if(keyCode == this.cheat_arr[this.cheat_index]){
+					this.cheat_index = this.cheat_index + 1;
+					if(this.cheat_index > 9){
+						this.playerLives = this.playerLives + 20;
+						this.cheat_index = 0;
+					}
+			  }else{
+					this.cheat_index = 0;
+			  }
+			  
+			  if(this.answerSubmitted != ''){
+				  if(this.enemy.isCorrect(this.answerSubmitted)){
+							this.isActiveEnemy = false;
+							this.stage.removeChild(this.enemy.sprite);
+							// this.stage.removeChild(this.questionText);
+							this.questionText.position.x = -100;
+							this.stage.removeChild(this.questionText)
+							this.enemies--;
+				  }else{
+							this.stage.removeChild(this.livesText);
+							this.playerLives--;
+							this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
+							this.livesText.position.x = 550;
+							this.livesText.position.y = 0;
+							this.stage.addChild(this.livesText);
+							if(this.playerLives < 1){
+								alert("YOU LOSE!");
+								this.changeScreen(TestWorldScreen);
+							}
+				  }
 			  }
 		  //Need to add code to take in a key A, B, C, or D, and check it against the answer to the currently selected question
 			/*if (arrayContains(KEYS_EXIT,keyCode))
