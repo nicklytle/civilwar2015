@@ -132,6 +132,7 @@ function(PIXI, Screen, Images, Collisions) {
 			this.enemies = 3;
 			this.yCoord = 0;
 			this.isActiveEnemy = false;
+			this.enemyTimer = 1000;
 			this.enemyTexture = [];
 			this.enemyTexture.push(Images.getTexture("woodship.png"));
 			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"blue"});
@@ -159,6 +160,51 @@ function(PIXI, Screen, Images, Collisions) {
 		  },
 		  update: function(delta)
 		  {
+		  this.enemyTimer--;
+		  if(this.enemyTimer < 1){
+			this.enemyTimer = 1000;
+			
+			//remove ship
+			this.isActiveEnemy = false;
+			this.stage.removeChild(this.enemy.sprite);
+			// this.stage.removeChild(this.questionText);
+			this.questionText.position.x = -100;
+			this.stage.removeChild(this.questionText)
+			this.enemies--;
+			
+			//wrong answer code
+			this.stage.removeChild(this.livesText);
+			this.playerLives--;
+			this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
+			this.livesText.position.x = 550;
+			this.livesText.position.y = 0;
+			this.stage.addChild(this.livesText);
+			if(this.playerLives < 1){
+				alert("YOU LOSE!");
+				this.changeScreen(TestWorldScreen);
+				//reset code
+				this.cheat_index = 0;
+				this.playerLives = 3;
+				this.round = 1;
+				this.enemies = 3;
+				this.yCoord = 0;
+				this.isActiveEnemy = false;
+				this.stage.removeChild(this.roundText);
+				this.stage.removeChild(this.livesText);
+				this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
+				this.roundText.position.x = 0;
+				this.roundText.position.y = 0;
+				this.stage.addChild(this.roundText);
+				this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
+				this.livesText.position.x = 550;
+				this.livesText.position.y = 0;
+				this.stage.addChild(this.livesText);
+				this.isActiveEnemy = false;
+				this.stage.removeChild(this.enemy.sprite);
+				this.questionText.position.x = -100;
+				this.stage.removeChild(this.questionText);
+			}
+		  }
 		  //Need to make the ships update their position, stopping once they hit a threshold
 		  //We should also include logic here to update points, end the game, or spawn enemies
 			if(this.enemies < 1){
@@ -250,8 +296,13 @@ function(PIXI, Screen, Images, Collisions) {
 			  if(keyCode == this.cheat_arr[this.cheat_index]){
 					this.cheat_index = this.cheat_index + 1;
 					if(this.cheat_index > 9){
+						this.stage.removeChild(this.livesText);
 						this.playerLives = this.playerLives + 20;
 						this.cheat_index = 0;
+						this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
+						this.livesText.position.x = 550;
+						this.livesText.position.y = 0;
+						this.stage.addChild(this.livesText);
 					}
 			  }else{
 					this.cheat_index = 0;
@@ -265,7 +316,17 @@ function(PIXI, Screen, Images, Collisions) {
 							this.questionText.position.x = -100;
 							this.stage.removeChild(this.questionText)
 							this.enemies--;
+							this.enemyTimer = 1000;
 				  }else{
+				  //remove ship
+				  			this.isActiveEnemy = false;
+							this.stage.removeChild(this.enemy.sprite);
+							// this.stage.removeChild(this.questionText);
+							this.questionText.position.x = -100;
+							this.stage.removeChild(this.questionText)
+							this.enemies--;
+							this.enemyTimer = 1000;
+					//wrong answer		
 							this.stage.removeChild(this.livesText);
 							this.playerLives--;
 							this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
