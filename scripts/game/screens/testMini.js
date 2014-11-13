@@ -1,7 +1,7 @@
 define(
   ['pixi', 'engine/classes/Screen', 'engine/graphics', 'engine/geometry'],
 function(PIXI, Screen, Images, Collisions) {
-console.log("GETHERE");
+//console.log("GETHERE");
 				function enemy_ship(sprite, name, question, answer){
 					this.sprite = sprite;
 					this.name = name;
@@ -165,6 +165,27 @@ console.log("GETHERE");
 				if(this.round > 3){
 					alert("YOU WIN!");
 					this.changeScreen(TestWorldScreen);
+					//reset code
+					this.cheat_index = 0;
+					this.playerLives = 3;
+					this.round = 1;
+					this.enemies = 3;
+					this.yCoord = 0;
+					this.isActiveEnemy = false;
+					this.stage.removeChild(this.roundText);
+					this.stage.removeChild(this.livesText);
+					this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
+					this.roundText.position.x = 0;
+					this.roundText.position.y = 0;
+					this.stage.addChild(this.roundText);
+					this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
+					this.livesText.position.x = 550;
+					this.livesText.position.y = 0;
+					this.stage.addChild(this.livesText);
+					this.isActiveEnemy = false;
+					this.stage.removeChild(this.enemy.sprite);
+					this.questionText.position.x = -100;
+					this.stage.removeChild(this.questionText);
 				}else{
 					this.stage.removeChild(this.roundText);
 					this.stage.removeChild(this.livesText);
@@ -184,7 +205,7 @@ console.log("GETHERE");
 			if(this.isActiveEnemy == false){
 				this.isActiveEnemy = true;
 				this.randomIndex = Math.floor(Math.random() * this.num_questions);
-				console.log(this.randomIndex);
+				//console.log(this.randomIndex);
 				this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
 				this.stage.addChild(this.enemy.sprite);
 				this.enemy.sprite.position.x = -100;
@@ -254,14 +275,35 @@ console.log("GETHERE");
 							if(this.playerLives < 1){
 								alert("YOU LOSE!");
 								this.changeScreen(TestWorldScreen);
+								//reset code
+								this.cheat_index = 0;
+								this.playerLives = 3;
+								this.round = 1;
+								this.enemies = 3;
+								this.yCoord = 0;
+								this.isActiveEnemy = false;
+								this.stage.removeChild(this.roundText);
+								this.stage.removeChild(this.livesText);
+								this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
+								this.roundText.position.x = 0;
+								this.roundText.position.y = 0;
+								this.stage.addChild(this.roundText);
+								this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
+								this.livesText.position.x = 550;
+								this.livesText.position.y = 0;
+								this.stage.addChild(this.livesText);
+								this.isActiveEnemy = false;
+								this.stage.removeChild(this.enemy.sprite);
+								this.questionText.position.x = -100;
+								this.stage.removeChild(this.questionText);
 							}
 				  }
 			  }
 		  //Need to add code to take in a key A, B, C, or D, and check it against the answer to the currently selected question
-			/*if (arrayContains(KEYS_EXIT,keyCode))
+			if (keyCode == 27)
 			{
 			  this.changeScreen(TestWorldScreen);
-			}*/
+			}
 		  },
 		  onMouseDown: function(point)
 		  {
@@ -269,7 +311,7 @@ console.log("GETHERE");
 
 		  }
 	});
-	console.log("WTFMATE");
+	//console.log("WTFMATE");
 	  return SampleMiniGame;
   }
 );
