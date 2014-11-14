@@ -162,48 +162,12 @@ function(PIXI, Screen, Images, Collisions) {
 		  {
 		  this.enemyTimer--;
 		  if(this.enemyTimer < 1){
-			this.enemyTimer = 1000;
 			
 			//remove ship
-			this.isActiveEnemy = false;
-			this.stage.removeChild(this.enemy.sprite);
-			// this.stage.removeChild(this.questionText);
-			this.questionText.position.x = -100;
-			this.stage.removeChild(this.questionText)
-			this.enemies--;
+			removeShip(this);
 			
 			//wrong answer code
-			this.stage.removeChild(this.livesText);
-			this.playerLives--;
-			this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
-			this.livesText.position.x = 550;
-			this.livesText.position.y = 0;
-			this.stage.addChild(this.livesText);
-			if(this.playerLives < 1){
-				alert("YOU LOSE!");
-				this.changeScreen(TestWorldScreen);
-				//reset code
-				this.cheat_index = 0;
-				this.playerLives = 3;
-				this.round = 1;
-				this.enemies = 3;
-				this.yCoord = 0;
-				this.isActiveEnemy = false;
-				this.stage.removeChild(this.roundText);
-				this.stage.removeChild(this.livesText);
-				this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
-				this.roundText.position.x = 0;
-				this.roundText.position.y = 0;
-				this.stage.addChild(this.roundText);
-				this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
-				this.livesText.position.x = 550;
-				this.livesText.position.y = 0;
-				this.stage.addChild(this.livesText);
-				this.isActiveEnemy = false;
-				this.stage.removeChild(this.enemy.sprite);
-				this.questionText.position.x = -100;
-				this.stage.removeChild(this.questionText);
-			}
+			wrongAnswer(this);
 		  }
 		  //Need to make the ships update their position, stopping once they hit a threshold
 		  //We should also include logic here to update points, end the game, or spawn enemies
@@ -211,27 +175,7 @@ function(PIXI, Screen, Images, Collisions) {
 				if(this.round > 3){
 					alert("YOU WIN!");
 					this.changeScreen(TestWorldScreen);
-					//reset code
-					this.cheat_index = 0;
-					this.playerLives = 3;
-					this.round = 1;
-					this.enemies = 3;
-					this.yCoord = 0;
-					this.isActiveEnemy = false;
-					this.stage.removeChild(this.roundText);
-					this.stage.removeChild(this.livesText);
-					this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
-					this.roundText.position.x = 0;
-					this.roundText.position.y = 0;
-					this.stage.addChild(this.roundText);
-					this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
-					this.livesText.position.x = 550;
-					this.livesText.position.y = 0;
-					this.stage.addChild(this.livesText);
-					this.isActiveEnemy = false;
-					this.stage.removeChild(this.enemy.sprite);
-					this.questionText.position.x = -100;
-					this.stage.removeChild(this.questionText);
+					resetGame(this);
 				}else{
 					this.stage.removeChild(this.roundText);
 					this.stage.removeChild(this.livesText);
@@ -272,23 +216,17 @@ function(PIXI, Screen, Images, Collisions) {
 		  onKeyDown: function(keyCode)
 		  {
 
-			  this.answerSubmitted = 'A';
+			/*if(keyCode == 67){
+				console.log("RESET!");
+				resetGame(this);
+			}*/
 			  if(keyCode == 65){
 					console.log("PRESSED A");
-					/*if(this.enemy.answer == 'A'){
-						this.isActiveEnemy = false;
-						this.stage.removeChild(this.enemy.sprite);
-						this.stage.removeChild(this.questionText);
-					}*/
+					this.answerSubmitted = 'A';
 			  }
 			  else if(keyCode == 66){
 					console.log("PRESSED B");
 					this.answerSubmitted = 'B';
-					/*if(this.enemy.answer == 'B'){
-						this.isActiveEnemy = false;
-						this.stage.removeChild(this.enemy.sprite);
-						this.stage.removeChild(this.questionText);
-					}*/
 			  }else{
 				this.answerSubmitted = '';
 			  }
@@ -310,54 +248,12 @@ function(PIXI, Screen, Images, Collisions) {
 			  
 			  if(this.answerSubmitted != ''){
 				  if(this.enemy.isCorrect(this.answerSubmitted)){
-							this.isActiveEnemy = false;
-							this.stage.removeChild(this.enemy.sprite);
-							// this.stage.removeChild(this.questionText);
-							this.questionText.position.x = -100;
-							this.stage.removeChild(this.questionText)
-							this.enemies--;
-							this.enemyTimer = 1000;
+						removeShip(this);
 				  }else{
 				  //remove ship
-				  			this.isActiveEnemy = false;
-							this.stage.removeChild(this.enemy.sprite);
-							// this.stage.removeChild(this.questionText);
-							this.questionText.position.x = -100;
-							this.stage.removeChild(this.questionText)
-							this.enemies--;
-							this.enemyTimer = 1000;
+						removeShip(this);
 					//wrong answer		
-							this.stage.removeChild(this.livesText);
-							this.playerLives--;
-							this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
-							this.livesText.position.x = 550;
-							this.livesText.position.y = 0;
-							this.stage.addChild(this.livesText);
-							if(this.playerLives < 1){
-								alert("YOU LOSE!");
-								this.changeScreen(TestWorldScreen);
-								//reset code
-								this.cheat_index = 0;
-								this.playerLives = 3;
-								this.round = 1;
-								this.enemies = 3;
-								this.yCoord = 0;
-								this.isActiveEnemy = false;
-								this.stage.removeChild(this.roundText);
-								this.stage.removeChild(this.livesText);
-								this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
-								this.roundText.position.x = 0;
-								this.roundText.position.y = 0;
-								this.stage.addChild(this.roundText);
-								this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
-								this.livesText.position.x = 550;
-								this.livesText.position.y = 0;
-								this.stage.addChild(this.livesText);
-								this.isActiveEnemy = false;
-								this.stage.removeChild(this.enemy.sprite);
-								this.questionText.position.x = -100;
-								this.stage.removeChild(this.questionText);
-							}
+						wrongAnswer(this);
 				  }
 			  }
 		  //Need to add code to take in a key A, B, C, or D, and check it against the answer to the currently selected question
@@ -373,6 +269,51 @@ function(PIXI, Screen, Images, Collisions) {
 		  }
 	});
 	//console.log("WTFMATE");
+	
+	function resetGame(game){
+								game.cheat_index = 0;
+								game.playerLives = 3;
+								game.round = 1;
+								game.enemies = 3;
+								game.yCoord = 0;
+								game.isActiveEnemy = false;
+								game.stage.removeChild(game.roundText);
+								game.stage.removeChild(game.livesText);
+								game.roundText = new PIXI.Text("Round: " + game.round,{font:"30px Arial "});
+								game.roundText.position.x = 0;
+								game.roundText.position.y = 0;
+								game.stage.addChild(game.roundText);
+								game.livesText = new PIXI.Text("Lives: " + game.playerLives,{font:"30px Arial "});
+								game.livesText.position.x = 550;
+								game.livesText.position.y = 0;
+								game.stage.addChild(game.livesText);
+								game.isActiveEnemy = false;
+								game.stage.removeChild(game.enemy.sprite);
+								game.questionText.position.x = -100;
+								game.stage.removeChild(game.questionText);
+	}
+	function removeShip(game){
+						  	game.isActiveEnemy = false;
+							game.stage.removeChild(game.enemy.sprite);
+							// game.stage.removeChild(game.questionText);
+							game.questionText.position.x = -100;
+							game.stage.removeChild(game.questionText)
+							game.enemies--;
+							game.enemyTimer = 1000;
+	}
+	function wrongAnswer(game){
+							game.stage.removeChild(game.livesText);
+							game.playerLives--;
+							game.livesText = new PIXI.Text("Lives: " + game.playerLives,{font:"30px Arial "});
+							game.livesText.position.x = 550;
+							game.livesText.position.y = 0;
+							game.stage.addChild(game.livesText);
+							if(game.playerLives < 1){
+								alert("YOU LOSE!");
+								game.changeScreen(TestWorldScreen);
+								resetGame(game);
+							}
+	}
 	  return SampleMiniGame;
   }
 );
