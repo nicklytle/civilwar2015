@@ -135,11 +135,11 @@ function(PIXI, Screen, Images, Collisions) {
 			this.enemyTimer = 1000;
 			this.enemyTexture = [];
 			this.enemyTexture.push(Images.getTexture("woodship.png"));
-			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"blue"});
+			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"white"});
 			this.answerText1.position.x = 500;
 			this.answerText1.position.y = 500;
 			this.stage.addChild(this.answerText1);
-			this.answerText2 = new PIXI.Text("B: CONFEDERACY",{font:"30px Arial ", fill:"gray"});
+			this.answerText2 = new PIXI.Text("B: CONFEDERACY",{font:"30px Arial ", fill:"black"});
 			this.answerText2.position.x = 500;
 			this.answerText2.position.y = 550;
 			this.stage.addChild(this.answerText2);
