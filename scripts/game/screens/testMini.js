@@ -19,7 +19,7 @@ function(PIXI, Screen, Images, Collisions) {
 		init: function(){
 				//Need to declare a "ship" type to match questions, answers, and sprites
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
-			this.music = new Audio('/assets/music/sail.ogg');
+			this.music = new Audio('/assets/music/(ShipGame)_DrunkenSailor.wav');
 			this.cheat_arr=[38,38,40,40,37,39,37,39,66,65];
 			this.cheat_index = 0;
 			var backMap = Images.getTexture("minibg.png");
@@ -127,6 +127,10 @@ function(PIXI, Screen, Images, Collisions) {
 			this.playerShip.sprite.position.x = 370;
 			this.playerShip.sprite.position.y = 240;
 			this.stage.addChild(this.playerShip.sprite);
+			this.backgroundBox = new PIXI.Sprite(Images.getTexture("BOXClear.png"));
+			this.backgroundBox.position.x = 490;
+			this.backgroundBox.position.y = 490;
+			this.stage.addChild(this.backgroundBox);
 			this.playerLives = 3;
 			this.round = 1;
 			this.score = 0;
@@ -136,11 +140,13 @@ function(PIXI, Screen, Images, Collisions) {
 			this.enemyTimer = 1000;
 			this.enemyTexture = [];
 			this.enemyTexture.push(Images.getTexture("woodship.png"));
-			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"white"});
+			
+			//text field declarations
+			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"blue"});
 			this.answerText1.position.x = 500;
 			this.answerText1.position.y = 500;
 			this.stage.addChild(this.answerText1);
-			this.answerText2 = new PIXI.Text("B: CONFEDERACY",{font:"30px Arial ", fill:"black"});
+			this.answerText2 = new PIXI.Text("B: CONFEDERACY",{font:"30px Arial ", fill:"gray"});
 			this.answerText2.position.x = 500;
 			this.answerText2.position.y = 550;
 			this.stage.addChild(this.answerText2);
@@ -152,10 +158,16 @@ function(PIXI, Screen, Images, Collisions) {
 			this.livesText.position.x = 550;
 			this.livesText.position.y = 0;
 			this.stage.addChild(this.livesText);
+
 			this.scoreText = new PIXI.Text("Score: " + this.score,{font:"30px Arial "});
 			this.scoreText.position.x = 300;
 			this.scoreText.position.y = 0;
 			this.stage.addChild(this.scoreText);
+			this.timerText = new PIXI.Text("Time To Answer: " + Math.floor(this.enemyTimer / 60),{font:"30px Arial "});
+			this.timerText.position.x = 0;
+			this.timerText.position.y = 40;
+			this.stage.addChild(this.timerText);
+
 			//this.questionText = new PIXI.Text(this.questions[0],{font:"30px Arial ", fill:"red"});
             //this.questionText.position.x = -100;
             //this.questionText.position.y = 450;
@@ -167,6 +179,7 @@ function(PIXI, Screen, Images, Collisions) {
 		  update: function(delta)
 		  {
 		  this.enemyTimer--;
+		  updateTimerText(this);
 		  if(this.enemyTimer < 1){
 			
 			//remove ship
@@ -185,19 +198,13 @@ function(PIXI, Screen, Images, Collisions) {
 					this.changeScreen(TestWorldScreen);
 					resetGame(this);
 				}else{
-					this.stage.removeChild(this.roundText);
-					this.stage.removeChild(this.livesText);
 					this.round = this.round + 1;
 					this.enemies = this.round * 3;
 					this.playerLives = this.playerLives + 3;
-					this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
-					this.roundText.position.x = 0;
-					this.roundText.position.y = 0;
-					this.stage.addChild(this.roundText);
-					this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
-					this.livesText.position.x = 550;
-					this.livesText.position.y = 0;
-					this.stage.addChild(this.livesText);
+
+
+					updateRoundsText(this);
+					updateLivesText(this);
 
 				}
 			}
@@ -243,13 +250,9 @@ function(PIXI, Screen, Images, Collisions) {
 			  if(keyCode == this.cheat_arr[this.cheat_index]){
 					this.cheat_index = this.cheat_index + 1;
 					if(this.cheat_index > 9){
-						this.stage.removeChild(this.livesText);
 						this.playerLives = this.playerLives + 20;
 						this.cheat_index = 0;
-						this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
-						this.livesText.position.x = 550;
-						this.livesText.position.y = 0;
-						this.stage.addChild(this.livesText);
+						updateLivesText(this);
 					}
 			  }else{
 					this.cheat_index = 0;
@@ -286,58 +289,72 @@ function(PIXI, Screen, Images, Collisions) {
 		  }
 	});
 	//console.log("WTFMATE");
+
+	function updateTimerText(game){
+		game.stage.removeChild(game.timerText);
+		game.timerText = new PIXI.Text("Time To Answer: " + Math.floor(game.enemyTimer / 60),{font:"30px Arial "});
+		game.timerText.position.x = 0;
+		game.timerText.position.y = 40;
+		game.stage.addChild(game.timerText);
+	}
+	
+	function updateRoundsText(game){
+		game.stage.removeChild(game.roundText);
+		game.roundText = new PIXI.Text("Round: " + game.round,{font:"30px Arial "});
+		game.roundText.position.x = 0;
+		game.roundText.position.y = 0;
+		game.stage.addChild(game.roundText);
+	}
+	
+	function updateLivesText(game){
+		game.stage.removeChild(game.livesText);
+		game.livesText = new PIXI.Text("Lives: " + game.playerLives,{font:"30px Arial "});
+		game.livesText.position.x = 550;
+		game.livesText.position.y = 0;
+		game.stage.addChild(game.livesText);
+	}
 	
 	function resetGame(game){
-								game.cheat_index = 0;
-								game.playerLives = 3;
-								game.round = 1;
-								game.score = 0;
-								game.enemies = 3;
-								game.yCoord = 0;
-								game.isActiveEnemy = false;
-								game.stage.removeChild(game.roundText);
-								game.stage.removeChild(game.livesText);
-								game.stage.removeChild(game.scoreText);
-								game.roundText = new PIXI.Text("Round: " + game.round,{font:"30px Arial "});
-								game.roundText.position.x = 0;
-								game.roundText.position.y = 0;
-								game.stage.addChild(game.roundText);
-								game.livesText = new PIXI.Text("Lives: " + game.playerLives,{font:"30px Arial "});
-								game.livesText.position.x = 550;
-								game.livesText.position.y = 0;
-								game.stage.addChild(game.livesText);
-								game.scoreText = new PIXI.Text("Score: " + game.score,{font:"30px Arial "});
-								game.scoreText.position.x = 300;
-								game.scoreText.position.y = 0;
-								game.stage.addChild(game.scoreText);
-								game.isActiveEnemy = false;
-								game.stage.removeChild(game.enemy.sprite);
-								game.questionText.position.x = -100;
-								game.stage.removeChild(game.questionText);
+
+		game.cheat_index = 0;
+		game.playerLives = 3;
+		game.round = 1;
+		game.enemies = 3;
+		game.yCoord = 0;
+		game.isActiveEnemy = false;
+		updateRoundsText(game);
+		updateLivesText(game);
+		game.isActiveEnemy = false;
+		game.stage.removeChild(game.enemy.sprite);
+		game.questionText.position.x = -100;
+		game.stage.removeChild(game.questionText);
+
+		game.score = 0;
+		game.scoreText = new PIXI.Text("Score: " + game.score,{font:"30px Arial "});
+		game.scoreText.position.x = 300;
+		game.scoreText.position.y = 0;
+		game.stage.addChild(game.scoreText);
+
 	}
 	function removeShip(game){
-						  	game.isActiveEnemy = false;
-							game.stage.removeChild(game.enemy.sprite);
-							// game.stage.removeChild(game.questionText);
-							game.questionText.position.x = -100;
-							game.stage.removeChild(game.questionText)
-							game.enemies--;
-							game.enemyTimer = 1000;
+		game.isActiveEnemy = false;
+		game.stage.removeChild(game.enemy.sprite);
+		// game.stage.removeChild(game.questionText);
+		game.questionText.position.x = -100;
+		game.stage.removeChild(game.questionText)
+		game.enemies--;
+		game.enemyTimer = 1000;
 	}
 	function wrongAnswer(game){
-							game.stage.removeChild(game.livesText);
-							game.playerLives--;
-							game.livesText = new PIXI.Text("Lives: " + game.playerLives,{font:"30px Arial "});
-							game.livesText.position.x = 550;
-							game.livesText.position.y = 0;
-							game.stage.addChild(game.livesText);
-							if(game.playerLives < 1){
-								alert("YOU LOSE!");
-								game.music.pause();
-								TestWorldScreen.music.play();
-								game.changeScreen(TestWorldScreen);
-								resetGame(game);
-							}
+		game.playerLives--;
+		updateLivesText(game);
+		if(game.playerLives < 1){
+			alert("YOU LOSE!");
+			game.music.pause();
+			TestWorldScreen.music.play();
+			game.changeScreen(TestWorldScreen);
+			resetGame(game);
+		}
 	}
 	  return SampleMiniGame;
   }
