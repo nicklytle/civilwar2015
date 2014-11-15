@@ -129,6 +129,7 @@ function(PIXI, Screen, Images, Collisions) {
 			this.stage.addChild(this.playerShip.sprite);
 			this.playerLives = 3;
 			this.round = 1;
+			this.score = 0;
 			this.enemies = 3;
 			this.yCoord = 0;
 			this.isActiveEnemy = false;
@@ -151,6 +152,10 @@ function(PIXI, Screen, Images, Collisions) {
 			this.livesText.position.x = 550;
 			this.livesText.position.y = 0;
 			this.stage.addChild(this.livesText);
+			this.scoreText = new PIXI.Text("Score: " + this.score,{font:"30px Arial "});
+			this.scoreText.position.x = 300;
+			this.scoreText.position.y = 0;
+			this.stage.addChild(this.scoreText);
 			//this.questionText = new PIXI.Text(this.questions[0],{font:"30px Arial ", fill:"red"});
             //this.questionText.position.x = -100;
             //this.questionText.position.y = 450;
@@ -193,6 +198,7 @@ function(PIXI, Screen, Images, Collisions) {
 					this.livesText.position.x = 550;
 					this.livesText.position.y = 0;
 					this.stage.addChild(this.livesText);
+
 				}
 			}
 			if(this.isActiveEnemy == false){
@@ -252,6 +258,12 @@ function(PIXI, Screen, Images, Collisions) {
 			  if(this.answerSubmitted != ''){
 				  if(this.enemy.isCorrect(this.answerSubmitted)){
 						removeShip(this);
+					this.stage.removeChild(this.scoreText);
+					this.score ++; 
+					this.scoreText = new PIXI.Text("Score: " + this.score,{font: "30px Arial "});
+					this.scoreText.position.x = 300;
+					this.scoreText.position.y = 0; 
+					this.stage.addChild(this.scoreText);
 				  }else{
 				  //remove ship
 						removeShip(this);
@@ -279,11 +291,13 @@ function(PIXI, Screen, Images, Collisions) {
 								game.cheat_index = 0;
 								game.playerLives = 3;
 								game.round = 1;
+								game.score = 0;
 								game.enemies = 3;
 								game.yCoord = 0;
 								game.isActiveEnemy = false;
 								game.stage.removeChild(game.roundText);
 								game.stage.removeChild(game.livesText);
+								game.stage.removeChild(game.scoreText);
 								game.roundText = new PIXI.Text("Round: " + game.round,{font:"30px Arial "});
 								game.roundText.position.x = 0;
 								game.roundText.position.y = 0;
@@ -292,6 +306,10 @@ function(PIXI, Screen, Images, Collisions) {
 								game.livesText.position.x = 550;
 								game.livesText.position.y = 0;
 								game.stage.addChild(game.livesText);
+								game.scoreText = new PIXI.Text("Score: " + game.score,{font:"30px Arial "});
+								game.scoreText.position.x = 300;
+								game.scoreText.position.y = 0;
+								game.stage.addChild(game.scoreText);
 								game.isActiveEnemy = false;
 								game.stage.removeChild(game.enemy.sprite);
 								game.questionText.position.x = -100;
