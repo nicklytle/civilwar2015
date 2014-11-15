@@ -19,7 +19,7 @@ function(PIXI, Screen, Images, Collisions) {
 		init: function(){
 				//Need to declare a "ship" type to match questions, answers, and sprites
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
-			  
+			this.music = new Audio('/assets/music/sail.ogg');
 			this.cheat_arr=[38,38,40,40,37,39,37,39,66,65];
 			this.cheat_index = 0;
 			var backMap = Images.getTexture("minibg.png");
@@ -157,6 +157,7 @@ function(PIXI, Screen, Images, Collisions) {
             //this.stage.addChild(this.questionText);
 			//Array of questions, randomly chosen, 3 lives per round, round length increases
 			//Keys A and B 65 and 66
+			//this.music.play();
 		  },
 		  update: function(delta)
 		  {
@@ -174,6 +175,8 @@ function(PIXI, Screen, Images, Collisions) {
 			if(this.enemies < 1){
 				if(this.round > 3){
 					alert("YOU WIN!");
+					this.music.pause();
+					TestWorldScreen.music.play();
 					this.changeScreen(TestWorldScreen);
 					resetGame(this);
 				}else{
@@ -259,6 +262,8 @@ function(PIXI, Screen, Images, Collisions) {
 		  //Need to add code to take in a key A, B, C, or D, and check it against the answer to the currently selected question
 			if (keyCode == 27)
 			{
+				this.music.pause();
+				TestWorldScreen.music.play();
 			  this.changeScreen(TestWorldScreen);
 			}
 		  },
@@ -310,6 +315,8 @@ function(PIXI, Screen, Images, Collisions) {
 							game.stage.addChild(game.livesText);
 							if(game.playerLives < 1){
 								alert("YOU LOSE!");
+								this.music.pause();
+								TestWorldScreen.music.play();
 								game.changeScreen(TestWorldScreen);
 								resetGame(game);
 							}

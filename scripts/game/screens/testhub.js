@@ -20,6 +20,8 @@ define(
 
 		function twsInit()
 		{
+			this.music = new Audio('/assets/music/Call You Home.wav');
+			this.music.play();
 			this.updated = false;
 			//Sounds.load("coin.wav");
 			// IMPORTANT:
@@ -503,6 +505,8 @@ define(
 				//this.changeScreen(TestMenuScreen);
 				console.log("EEK");
 				console.log(this.nextScreen);
+				this.music.pause();
+				SampleMiniGame.music.play();
 				this.changeScreen(SampleMiniGame);
 			}
 		}
