@@ -315,7 +315,7 @@ function(PIXI, Screen, Images, Collisions) {
 							game.stage.addChild(game.livesText);
 							if(game.playerLives < 1){
 								alert("YOU LOSE!");
-								this.music.pause();
+								game.music.pause();
 								TestWorldScreen.music.play();
 								game.changeScreen(TestWorldScreen);
 								resetGame(game);
