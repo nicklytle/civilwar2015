@@ -96,10 +96,23 @@ function(PIXI, Screen, Images, Collisions) {
 			this.score = 0;
 			this.enemies = this.questionNums[0];
 			this.yCoord = 0;
-			this.isActiveEnemy = false;
+			this.isActiveEnemy = true;
 			this.enemyTimer = 600;
 			this.enemyTexture = [];
 			this.enemyTexture.push(Images.getTexture("woodship.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode1.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode2.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode3.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode4.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode5.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode6.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode7.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode8.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode9.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode10.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode11.png"));
+			this.enemyTexture.push(Images.getTexture("woodshipsplode12.png"));
+			
 			
 			//text field declarations
 			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"blue"});
@@ -130,6 +143,19 @@ function(PIXI, Screen, Images, Collisions) {
 			this.timerText.position.x = 0;
 			this.timerText.position.y = 40;
 			this.stage.addChild(this.timerText);
+			
+			this.randomIndex = Math.floor(Math.random() * this.questionArr[this.round - 1].length);
+			//console.log(this.randomIndex);
+			this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questionArr[this.round - 1][this.randomIndex][0],this.questionArr[this.round - 1][this.randomIndex][1]);
+			//this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questionArr[0][0],this.questionArr[0][1]);
+			this.stage.addChild(this.enemy.sprite);
+			this.enemy.sprite.position.x = -100;
+			this.yCoord = Math.floor(Math.random() * 100) + 1;
+			this.enemy.sprite.position.y = this.yCoord + 300;
+			this.questionText = new PIXI.Text(this.enemy.question,{font:"30px Arial ", fill:"red"});
+			this.questionText.position.x = -100;
+			this.questionText.position.y = this.yCoord-50 + 300;
+			this.stage.addChild(this.questionText);
 
 			//this.questionText = new PIXI.Text(this.questions[0],{font:"30px Arial ", fill:"red"});
             //this.questionText.position.x = -100;
@@ -171,7 +197,8 @@ function(PIXI, Screen, Images, Collisions) {
 
 				}
 			}
-			if(this.isActiveEnemy == false){
+			if(this.isActiveEnemy == false && this.enemy.sprite.currentFrame > 10){
+				this.stage.removeChild(this.enemy.sprite);
 				this.isActiveEnemy = true;
 				this.randomIndex = Math.floor(Math.random() * this.questionArr[this.round - 1].length);
 				//console.log(this.randomIndex);
@@ -314,8 +341,9 @@ function(PIXI, Screen, Images, Collisions) {
 	}
 	function removeShip(game){
 		game.isActiveEnemy = false;
-		game.stage.removeChild(game.enemy.sprite);
+		//game.stage.removeChild(game.enemy.sprite);
 		// game.stage.removeChild(game.questionText);
+		game.enemy.sprite.play();
 		game.questionText.position.x = -100;
 		game.stage.removeChild(game.questionText)
 		game.enemies--;
