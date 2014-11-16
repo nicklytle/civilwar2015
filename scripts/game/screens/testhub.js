@@ -37,7 +37,7 @@ define(
 
 			var stageWorld = this.stage;
 			// just a nickname so we don't have to change so much stuff
-			this.bg = Images.createSprite("env/newtown.png");
+			this.bg = Images.createSprite("env/town_map.png");
 			this.bg.position.x -= 100;
 			this.bg.position.y -= 100;
 			this.stage.addChild(this.bg);
