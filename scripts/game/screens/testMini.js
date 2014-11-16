@@ -180,19 +180,11 @@ function(PIXI, Screen, Images, Collisions) {
 					this.changeScreen(TestWorldScreen);
 					resetGame(this);
 				}else{
-					this.stage.removeChild(this.roundText);
-					this.stage.removeChild(this.livesText);
 					this.round = this.round + 1;
 					this.enemies = this.round * 3;
 					this.playerLives = this.playerLives + 3;
-					this.roundText = new PIXI.Text("Round: " + this.round,{font:"30px Arial "});
-					this.roundText.position.x = 0;
-					this.roundText.position.y = 0;
-					this.stage.addChild(this.roundText);
-					this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
-					this.livesText.position.x = 550;
-					this.livesText.position.y = 0;
-					this.stage.addChild(this.livesText);
+					updateRoundsText(this);
+					updateLivesText(this);
 				}
 			}
 			if(this.isActiveEnemy == false){
@@ -237,13 +229,9 @@ function(PIXI, Screen, Images, Collisions) {
 			  if(keyCode == this.cheat_arr[this.cheat_index]){
 					this.cheat_index = this.cheat_index + 1;
 					if(this.cheat_index > 9){
-						this.stage.removeChild(this.livesText);
 						this.playerLives = this.playerLives + 20;
 						this.cheat_index = 0;
-						this.livesText = new PIXI.Text("Lives: " + this.playerLives,{font:"30px Arial "});
-						this.livesText.position.x = 550;
-						this.livesText.position.y = 0;
-						this.stage.addChild(this.livesText);
+						updateLivesText(this);
 					}
 			  }else{
 					this.cheat_index = 0;
@@ -275,51 +263,55 @@ function(PIXI, Screen, Images, Collisions) {
 	});
 	//console.log("WTFMATE");
 	
+	function updateRoundsText(game){
+		game.stage.removeChild(game.roundText);
+		game.roundText = new PIXI.Text("Round: " + game.round,{font:"30px Arial "});
+		game.roundText.position.x = 0;
+		game.roundText.position.y = 0;
+		game.stage.addChild(game.roundText);
+	}
+	
+	function updateLivesText(game){
+		game.stage.removeChild(game.livesText);
+		game.livesText = new PIXI.Text("Lives: " + game.playerLives,{font:"30px Arial "});
+		game.livesText.position.x = 550;
+		game.livesText.position.y = 0;
+		game.stage.addChild(game.livesText);
+	}
+	
 	function resetGame(game){
-								game.cheat_index = 0;
-								game.playerLives = 3;
-								game.round = 1;
-								game.enemies = 3;
-								game.yCoord = 0;
-								game.isActiveEnemy = false;
-								game.stage.removeChild(game.roundText);
-								game.stage.removeChild(game.livesText);
-								game.roundText = new PIXI.Text("Round: " + game.round,{font:"30px Arial "});
-								game.roundText.position.x = 0;
-								game.roundText.position.y = 0;
-								game.stage.addChild(game.roundText);
-								game.livesText = new PIXI.Text("Lives: " + game.playerLives,{font:"30px Arial "});
-								game.livesText.position.x = 550;
-								game.livesText.position.y = 0;
-								game.stage.addChild(game.livesText);
-								game.isActiveEnemy = false;
-								game.stage.removeChild(game.enemy.sprite);
-								game.questionText.position.x = -100;
-								game.stage.removeChild(game.questionText);
+		game.cheat_index = 0;
+		game.playerLives = 3;
+		game.round = 1;
+		game.enemies = 3;
+		game.yCoord = 0;
+		game.isActiveEnemy = false;
+		updateRoundsText(game);
+		updateLivesText(game);
+		game.isActiveEnemy = false;
+		game.stage.removeChild(game.enemy.sprite);
+		game.questionText.position.x = -100;
+		game.stage.removeChild(game.questionText);
 	}
 	function removeShip(game){
-						  	game.isActiveEnemy = false;
-							game.stage.removeChild(game.enemy.sprite);
-							// game.stage.removeChild(game.questionText);
-							game.questionText.position.x = -100;
-							game.stage.removeChild(game.questionText)
-							game.enemies--;
-							game.enemyTimer = 1000;
+		game.isActiveEnemy = false;
+		game.stage.removeChild(game.enemy.sprite);
+		// game.stage.removeChild(game.questionText);
+		game.questionText.position.x = -100;
+		game.stage.removeChild(game.questionText)
+		game.enemies--;
+		game.enemyTimer = 1000;
 	}
 	function wrongAnswer(game){
-							game.stage.removeChild(game.livesText);
-							game.playerLives--;
-							game.livesText = new PIXI.Text("Lives: " + game.playerLives,{font:"30px Arial "});
-							game.livesText.position.x = 550;
-							game.livesText.position.y = 0;
-							game.stage.addChild(game.livesText);
-							if(game.playerLives < 1){
-								alert("YOU LOSE!");
-								game.music.pause();
-								TestWorldScreen.music.play();
-								game.changeScreen(TestWorldScreen);
-								resetGame(game);
-							}
+		game.playerLives--;
+		updateLivesText(game);
+		if(game.playerLives < 1){
+			alert("YOU LOSE!");
+			game.music.pause();
+			TestWorldScreen.music.play();
+			game.changeScreen(TestWorldScreen);
+			resetGame(game);
+		}
 	}
 	  return SampleMiniGame;
   }
