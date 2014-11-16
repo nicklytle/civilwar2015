@@ -20,7 +20,7 @@ define(
 
 		function twsInit()
 		{
-			this.music = new Audio('/assets/music/Call You Home.wav');
+			this.music = new Audio('/assets/music/town_music.ogg');
 			this.music.play();
 			this.updated = false;
 			//Sounds.load("coin.wav");

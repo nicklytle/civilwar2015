@@ -19,7 +19,7 @@ function(PIXI, Screen, Images, Collisions) {
 		init: function(){
 				//Need to declare a "ship" type to match questions, answers, and sprites
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
-			this.music = new Audio('/assets/music/sail.ogg');
+			this.music = new Audio('/assets/music/(ShipGame)_DrunkenSailor.wav');
 			this.cheat_arr=[38,38,40,40,37,39,37,39,66,65];
 			this.cheat_index = 0;
 			var backMap = Images.getTexture("minibg.png");
