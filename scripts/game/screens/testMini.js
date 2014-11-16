@@ -20,6 +20,7 @@ function(PIXI, Screen, Images, Collisions) {
 				//Need to declare a "ship" type to match questions, answers, and sprites
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
 			this.music = new Audio('/assets/music/(ShipGame)_DrunkenSailor.wav');
+			this.music.loop = true;
 			this.shipHit = new Audio(
 			'assets/music/(ShipGame)_EnemyHit.wav');
 			this.playerHit = new Audio(
