@@ -20,6 +20,11 @@ function(PIXI, Screen, Images, Collisions) {
 				//Need to declare a "ship" type to match questions, answers, and sprites
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
 			this.music = new Audio('/assets/music/(ShipGame)_DrunkenSailor.wav');
+			this.shipHit = new Audio(
+			'assets/music/(ShipGame)_EnemyHit.wav');
+			this.playerHit = new Audio(
+			'assets/music/(ShipGame)_PlayerHit.wav');
+
 			this.cheat_arr=[38,38,40,40,37,39,37,39,66,65];
 			this.cheat_index = 0;
 			var backMap = Images.getTexture("minibg.png");
@@ -113,7 +118,10 @@ function(PIXI, Screen, Images, Collisions) {
 			this.livesText.position.x = 550;
 			this.livesText.position.y = 0;
 			this.stage.addChild(this.livesText);
-
+			this.leftInRoundText = new PIXI.Text("Left in round: " + this.enemies,{font:"30px Arial "});
+			this.leftInRoundText.position.x = 300;
+			this.leftInRoundText.position.y = 40;
+			this.stage.addChild(this.leftInRoundText);
 			this.scoreText = new PIXI.Text("Score: " + this.score,{font:"30px Arial "});
 			this.scoreText.position.x = 300;
 			this.scoreText.position.y = 0;
@@ -157,7 +165,7 @@ function(PIXI, Screen, Images, Collisions) {
 					this.enemies = this.questionNums[this.round - 1];
 					this.playerLives = 3;
 
-
+					updateLeftRoundsText(this);
 					updateRoundsText(this);
 					updateLivesText(this);
 
@@ -223,6 +231,9 @@ function(PIXI, Screen, Images, Collisions) {
 					this.scoreText.position.x = 300;
 					this.scoreText.position.y = 0; 
 					this.stage.addChild(this.scoreText);
+					this.shipHit.play();
+					this.shipHit.currentTime=0;
+
 				  }else{
 				  //remove ship
 						removeShip(this);
@@ -269,6 +280,14 @@ function(PIXI, Screen, Images, Collisions) {
 		game.livesText.position.y = 0;
 		game.stage.addChild(game.livesText);
 	}
+
+	function updateLeftRoundsText(game){
+		game.stage.removeChild(game.leftInRoundText);
+		game.leftInRoundText = new PIXI.Text("Left in round: " + game.enemies,{font:"30px Arial "});
+		game.leftInRoundText.position.x = 300;
+		game.leftInRoundText.position.y = 40;
+		game.stage.addChild(game.leftInRoundText);
+	}
 	
 	function resetGame(game){
 		game.score = 0;
@@ -280,6 +299,7 @@ function(PIXI, Screen, Images, Collisions) {
 		game.isActiveEnemy = false;
 		updateRoundsText(game);
 		updateLivesText(game);
+		updateLeftRoundsText(game);
 		game.isActiveEnemy = false;
 		game.stage.removeChild(game.enemy.sprite);
 		game.questionText.position.x = -100;
@@ -300,6 +320,7 @@ function(PIXI, Screen, Images, Collisions) {
 		game.stage.removeChild(game.questionText)
 		game.enemies--;
 		game.enemyTimer = 600;
+		updateLeftRoundsText(game);
 	}
 	function wrongAnswer(game){
 		game.playerLives--;
@@ -311,6 +332,9 @@ function(PIXI, Screen, Images, Collisions) {
 			game.changeScreen(TestWorldScreen);
 			resetGame(game);
 		}
+		game.playerHit.play();
+		game.playerHit.currentTime=0;
+
 	}
 	  return SampleMiniGame;
   }
