@@ -81,7 +81,27 @@ function(PIXI, Screen, Images, Collisions) {
 			[]
 			];
 			
-			this.playerShip = new enemy_ship(new PIXI.Sprite(Images.getTexture("ironclad.png")),"Player","","Q");
+			this.playerTexture = [];
+			this.playerTexture.push(Images.getTexture("ironclad.png"));
+			this.playerTexture.push(Images.getTexture("ironcladfire1.png"));
+			this.playerTexture.push(Images.getTexture("ironcladfire2.png"));
+			this.playerTexture.push(Images.getTexture("ironcladfire3.png"));
+			this.playerTexture.push(Images.getTexture("ironcladfire4.png"));
+			this.playerTexture.push(Images.getTexture("ironcladfire5.png"));
+			this.playerTexture.push(Images.getTexture("ironcladfire6.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode1.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode2.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode3.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode4.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode5.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode6.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode7.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode8.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode9.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode10.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode11.png"));
+			this.playerTexture.push(Images.getTexture("ironcladsplode12.png"));
+			this.playerShip = new enemy_ship(new PIXI.MovieClip(this.playerTexture),"Player","","Q");
 			this.playerShip.sprite.position.x = 370;
 			this.playerShip.sprite.position.y = 240;
 			this.stage.addChild(this.playerShip.sprite);
@@ -169,6 +189,15 @@ function(PIXI, Screen, Images, Collisions) {
 		  {
 		  this.enemyTimer--;
 		  updateTimerText(this);
+		  
+		  if(this.playerShip.sprite.currentFrame == 4){
+			this.playerShip.sprite.gotoAndStop(0);
+		  }
+		  
+		 if(this.playerShip.sprite.currentFrame == 15){
+			this.playerShip.sprite.gotoAndStop(0);
+		  }
+		  
 		  if(this.enemyTimer < 1){
 			
 			//remove ship
@@ -197,7 +226,7 @@ function(PIXI, Screen, Images, Collisions) {
 
 				}
 			}
-			if(this.isActiveEnemy == false && this.enemy.sprite.currentFrame > 10){
+			if(this.isActiveEnemy == false && this.enemy.sprite.currentFrame > 11){
 				this.stage.removeChild(this.enemy.sprite);
 				this.isActiveEnemy = true;
 				this.randomIndex = Math.floor(Math.random() * this.questionArr[this.round - 1].length);
@@ -251,6 +280,7 @@ function(PIXI, Screen, Images, Collisions) {
 			  
 			  if(this.answerSubmitted != ''){
 				  if(this.enemy.isCorrect(this.answerSubmitted)){
+				  this.playerShip.sprite.play();
 						removeShip(this);
 					this.stage.removeChild(this.scoreText);
 					this.score ++; 
@@ -262,10 +292,10 @@ function(PIXI, Screen, Images, Collisions) {
 					this.shipHit.currentTime=0;
 
 				  }else{
-				  //remove ship
-						removeShip(this);
 					//wrong answer		
 						wrongAnswer(this);
+					//remove ship
+						removeShip(this);
 				  }
 			  }
 		  //Need to add code to take in a key A, B, C, or D, and check it against the answer to the currently selected question
@@ -317,7 +347,6 @@ function(PIXI, Screen, Images, Collisions) {
 	}
 	
 	function resetGame(game){
-		game.score = 0;
 		game.cheat_index = 0;
 		game.playerLives = 3;
 		game.round = 1;
@@ -327,11 +356,14 @@ function(PIXI, Screen, Images, Collisions) {
 		updateRoundsText(game);
 		updateLivesText(game);
 		updateLeftRoundsText(game);
-		game.isActiveEnemy = false;
 		game.stage.removeChild(game.enemy.sprite);
 		game.questionText.position.x = -100;
+		game.randomIndex = Math.floor(Math.random() * game.questionArr[game.round - 1].length);
+		game.enemy = new enemy_ship(new PIXI.MovieClip(game.enemyTexture),"Enemy",game.questionArr[game.round - 1][game.randomIndex][0],game.questionArr[game.round - 1][game.randomIndex][1]);
+		game.stage.addChild(game.enemy.sprite);
+		game.enemy.sprite.position.x = -100;
 		game.stage.removeChild(game.questionText);
-
+		game.stage.removeChild(game.scoreText);
 		game.score = 0;
 		game.scoreText = new PIXI.Text("Score: " + game.score,{font:"30px Arial "});
 		game.scoreText.position.x = 300;
@@ -352,6 +384,7 @@ function(PIXI, Screen, Images, Collisions) {
 	}
 	function wrongAnswer(game){
 		game.playerLives--;
+		game.playerShip.sprite.gotoAndPlay(6);
 		updateLivesText(game);
 		if(game.playerLives < 1){
 			alert("YOU LOSE!");
