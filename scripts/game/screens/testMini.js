@@ -28,116 +28,71 @@ function(PIXI, Screen, Images, Collisions) {
 			back.scale.y *= .7;
 			this.stage.addChild(back);
 			//var this.enemySet = [];
-			this.questions = ["Abraham Lincoln",
-			"People favored tariffs",
-			"General Edwin M. Stanton",
-			"Bigger Army",
-			"Less Rigid Military Leadership",
-			"Frederick Douglas",
-			"Won",
-			"Robert Smalls",
-			"Naval Dominance of Southern Ports",
-			"Clara Barton",
-			"William Lloyd Garrison",
-			"General Scott",
-			"Urban Society",
-			"Anaconda Plan",
-			"More Soldiers on Side Lost",
-			"General Ulysses S. Grant",
-			"Capital is Washington D.C.",
-			"Battle Hymn of the Republic",
-			"Gettysburg Victory",
-			"Battle of Vicksburg Victory",
-			"Industrial","Textile Industry",
-			"General Sherman",
-			"Monitor",
-			"Battle of Appomattox Court House Victory",
-			"General McClellan",
-			"General Custer",
-			"Stars and Stripes",
-			"African Americans were soldiers",
-			"Battle of Petersburg Victory",
-			"General Meade",
-			"California",
-			"New Hampshire",
-			"Connecticut",
-			"New Jersey",
-			"Illinois",
-			"New York",
-			"Indiana",
-			"Ohio",
-			"Iowa",
-			"Oregon",
-			"Kansas",
-			"Pennsylvania",
-			"Maine",
-			"Rhode Island",
-			"Massachusetts",
-			"Vermont",
-			"Michigan",
-			"West Virginia",
-			"Minnesota",
-			"Wisconsin",
-			"General Robert E. Lee",
-			"Thomas “Stonewall” Jackson",
-			"Jefferson Davis",
-			"Capital was Richmond",
-			"“Dixie”",
-			"Fort Sumter Victory",
-			"First Battle of Bull Run Victory",
-			"Second Battle of Bull Run Victory",
-			"Rebel Yell",
-			"European Trading",
-			"Merrimack",
-			"State’s Rights",
-			"Stars and Bars",
-			"Battle of Fredericksburg Victory",
-			"Battle of Chancellorsville Victory",
-			"Northern Virginia Campaign Victory",
-			"Believed Slavery was Immoral",
-			"Lost",
-			"King Cotton",
-			"Less Soldiers on Side Lost",
-			"Smaller Army",
-			"General Pickett’s Charge",
-			"Fired First Shot",
-			"People opposed tariffs",
-			"Economy mainly agricultural",
-			"Believed they had right to declare any national law illegal",
-			"Troops were very young",
-			"African Americans were laborers",
-			"Alabama",
-			"North Carolina",
-			"Arkansas",
-			"South Carolina",
-			"Agricultural Society",
-			"Larger Navy",
-			"More Railroad Lines",
-			"Florida","Tennessee",
-			"Georgia",
-			"Texas",
-			"Louisiana",
-			"Virginia",
-			"Mississippi",
-			"Best Military Officers"];
-			this.num_questions = 90;
-			this.answers = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','A','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B','B'];
-
+			this.questionNums = [5,5,10,5,5,10,15];
+			this.questionArr = [
+			[["South Carolina",'B'],
+			["Mississippi",'B'],
+			["Florida",'B'],
+			["Alabama",'B'],
+			["Georgia",'B'],
+			["Louisiana",'B'],
+			["Texas",'B'],
+			["Virginia",'B'],
+			["Arkansas",'B'],
+			["North Carolina",'B'],
+			["Tennessee",'B'],
+			["Capital was Richmond, VA",'B'],
+			["California",'A'],
+			["Connecticut",'A'],
+			["Delaware",'A'],
+			["Illinois",'A'],
+			["Indiana",'A'],
+			["Iowa",'A'],
+			["Kansas",'A'],
+			["Kentucky",'A'],
+			["Maine",'A'],
+			["Maryland",'A'],
+			["Massachusetts",'A'],
+			["Michigan",'A'],
+			["Minnesota",'A'],
+			["Missouri",'A'],
+			["Nevada",'A'],
+			["New Hampshire",'A'],
+			["New Jersey",'A'],
+			["New York",'A'],
+			["Ohio",'A'],
+			["Oregon",'A'],
+			["Pennsylvania",'A'],
+			["Rhode Island",'A'],
+			["Vermont",'A'],
+			["West Virginia",'A'],
+			["Wisconsin",'A'],
+			["Capital was Washington, D.C.",'A']],
+			[["Battle1",'B'],["Battle2",'A']],
+			[],
+			[],
+			[],
+			[],
+			[]
+			];
+			
 			this.playerShip = new enemy_ship(new PIXI.Sprite(Images.getTexture("ironclad.png")),"Player","","Q");
 			this.playerShip.sprite.position.x = 370;
 			this.playerShip.sprite.position.y = 240;
 			this.stage.addChild(this.playerShip.sprite);
+			
 			this.backgroundBox = new PIXI.Sprite(Images.getTexture("BOXClear.png"));
 			this.backgroundBox.position.x = 490;
 			this.backgroundBox.position.y = 490;
 			this.stage.addChild(this.backgroundBox);
+			
 			this.playerLives = 3;
 			this.round = 1;
 			this.score = 0;
-			this.enemies = 3;
+			this.enemies = this.questionNums[0];
 			this.yCoord = 0;
 			this.isActiveEnemy = false;
-			this.enemyTimer = 1000;
+			this.enemyTimer = 600;
 			this.enemyTexture = [];
 			this.enemyTexture.push(Images.getTexture("woodship.png"));
 			
@@ -199,8 +154,8 @@ function(PIXI, Screen, Images, Collisions) {
 					resetGame(this);
 				}else{
 					this.round = this.round + 1;
-					this.enemies = this.round * 3;
-					this.playerLives = this.playerLives + 3;
+					this.enemies = this.questionNums[this.round - 1];
+					this.playerLives = 3;
 
 
 					updateRoundsText(this);
@@ -210,14 +165,15 @@ function(PIXI, Screen, Images, Collisions) {
 			}
 			if(this.isActiveEnemy == false){
 				this.isActiveEnemy = true;
-				this.randomIndex = Math.floor(Math.random() * this.num_questions);
+				this.randomIndex = Math.floor(Math.random() * this.questionArr[this.round - 1].length);
 				//console.log(this.randomIndex);
-				this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questions[this.randomIndex],this.answers[this.randomIndex]);
+				this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questionArr[this.round - 1][this.randomIndex][0],this.questionArr[this.round - 1][this.randomIndex][1]);
+				//this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questionArr[0][0],this.questionArr[0][1]);
 				this.stage.addChild(this.enemy.sprite);
 				this.enemy.sprite.position.x = -100;
 				this.yCoord = Math.floor(Math.random() * 100) + 1;
 				this.enemy.sprite.position.y = this.yCoord + 300;
-				this.questionText = new PIXI.Text(this.questions[this.randomIndex],{font:"30px Arial ", fill:"red"});
+				this.questionText = new PIXI.Text(this.enemy.question,{font:"30px Arial ", fill:"red"});
 				this.questionText.position.x = -100;
 				this.questionText.position.y = this.yCoord-50 + 300;
 				this.stage.addChild(this.questionText);
@@ -343,7 +299,7 @@ function(PIXI, Screen, Images, Collisions) {
 		game.questionText.position.x = -100;
 		game.stage.removeChild(game.questionText)
 		game.enemies--;
-		game.enemyTimer = 1000;
+		game.enemyTimer = 600;
 	}
 	function wrongAnswer(game){
 		game.playerLives--;
