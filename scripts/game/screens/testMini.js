@@ -127,6 +127,10 @@ function(PIXI, Screen, Images, Collisions) {
 			this.playerShip.sprite.position.x = 370;
 			this.playerShip.sprite.position.y = 240;
 			this.stage.addChild(this.playerShip.sprite);
+			this.backgroundBox = new PIXI.Sprite(Images.getTexture("BOXClear.png"));
+			this.backgroundBox.position.x = 490;
+			this.backgroundBox.position.y = 490;
+			this.stage.addChild(this.backgroundBox);
 			this.playerLives = 3;
 			this.round = 1;
 			this.enemies = 3;
@@ -135,11 +139,13 @@ function(PIXI, Screen, Images, Collisions) {
 			this.enemyTimer = 1000;
 			this.enemyTexture = [];
 			this.enemyTexture.push(Images.getTexture("woodship.png"));
-			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"white"});
+			
+			//text field declarations
+			this.answerText1 = new PIXI.Text("A: UNION",{font:"30px Arial ", fill:"blue"});
 			this.answerText1.position.x = 500;
 			this.answerText1.position.y = 500;
 			this.stage.addChild(this.answerText1);
-			this.answerText2 = new PIXI.Text("B: CONFEDERACY",{font:"30px Arial ", fill:"black"});
+			this.answerText2 = new PIXI.Text("B: CONFEDERACY",{font:"30px Arial ", fill:"gray"});
 			this.answerText2.position.x = 500;
 			this.answerText2.position.y = 550;
 			this.stage.addChild(this.answerText2);
@@ -151,6 +157,10 @@ function(PIXI, Screen, Images, Collisions) {
 			this.livesText.position.x = 550;
 			this.livesText.position.y = 0;
 			this.stage.addChild(this.livesText);
+			this.timerText = new PIXI.Text("Time To Answer: " + Math.floor(this.enemyTimer / 60),{font:"30px Arial "});
+			this.timerText.position.x = 0;
+			this.timerText.position.y = 40;
+			this.stage.addChild(this.timerText);
 			//this.questionText = new PIXI.Text(this.questions[0],{font:"30px Arial ", fill:"red"});
             //this.questionText.position.x = -100;
             //this.questionText.position.y = 450;
@@ -162,6 +172,7 @@ function(PIXI, Screen, Images, Collisions) {
 		  update: function(delta)
 		  {
 		  this.enemyTimer--;
+		  updateTimerText(this);
 		  if(this.enemyTimer < 1){
 			
 			//remove ship
@@ -262,6 +273,14 @@ function(PIXI, Screen, Images, Collisions) {
 		  }
 	});
 	//console.log("WTFMATE");
+
+	function updateTimerText(game){
+		game.stage.removeChild(game.timerText);
+		game.timerText = new PIXI.Text("Time To Answer: " + Math.floor(game.enemyTimer / 60),{font:"30px Arial "});
+		game.timerText.position.x = 0;
+		game.timerText.position.y = 40;
+		game.stage.addChild(game.timerText);
+	}
 	
 	function updateRoundsText(game){
 		game.stage.removeChild(game.roundText);
