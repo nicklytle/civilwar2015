@@ -21,10 +21,10 @@ define(
 		function twsInit()
 		{
 			this.music = new Audio('/assets/music/town_music.ogg');
+			this.music.play();
+			this.music.loop = true;
 			this.personTalk = new Audio(
 			'/assets/sounds/TalkPerson.wav');
-			this.music.loop = true;
-			this.music.play();
 			this.updated = false;
 			//Sounds.load("coin.wav");
 			// IMPORTANT:
@@ -37,7 +37,7 @@ define(
 
 			var stageWorld = this.stage;
 			// just a nickname so we don't have to change so much stuff
-			this.bg = Images.createSprite("env/town_map.png");
+			this.bg = Images.createSprite("env/newtown.png");
 			this.bg.position.x -= 100;
 			this.bg.position.y -= 100;
 			this.stage.addChild(this.bg);
@@ -47,7 +47,7 @@ define(
 
 			// load textures from file
 			var textureBunny = Images.getTexture("hat4.png");
-			var textureGreen  = Images.getTexture("wheat.gif");
+			var textureGreen = Images.getTexture("wheat.gif");
 
 			// add text to screen to track framerate
 			this.text = new PIXI.Text("", {
@@ -311,11 +311,11 @@ define(
 			
 			
 			if (Input.anyKeyDown(constants.KEYS_INTERACT) && this.textdisplay == 0 && this.interact == 0) {
+			
 				for(var i = 0; i < this.AllOfTheNPCs.length; i++){
 					if(Collisions.doRectanglesOverlap(bunny.getBounds(),this.AllOfTheNPCs[i].MovieClip.getBounds(), -30)){
 						this.personTalk.play();
 						this.personTalk.currentTime=0;
-
 						this.interact = 1;
 						this.currNPC = this.AllOfTheNPCs[i];
 						//BRING UP INTRO DIALOGUE
@@ -501,9 +501,6 @@ define(
 
 			// TODO game fps.....
 			// this.text.setText(engine.DEBUG_MODE ? (Math.round(Game.fps) + " FPS") : "");
-			
-			
-			
 			this.updated = true;
 		}
 
