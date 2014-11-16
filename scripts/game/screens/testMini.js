@@ -315,7 +315,7 @@ function(PIXI, Screen, Images, Collisions) {
 	}
 	
 	function resetGame(game){
-
+		game.score = 0;
 		game.cheat_index = 0;
 		game.playerLives = 3;
 		game.round = 1;
