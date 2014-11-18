@@ -73,13 +73,13 @@ function(PIXI, Screen, Images, Collisions) {
 			["Vermont",'A'],
 			["West Virginia",'A'],
 			["Wisconsin",'A'],
-			["Capital was Washington, D.C.",'A']],
-			[["Battle1",'B'],["Battle2",'A']],
-			[],
-			[],
-			[],
-			[],
-			[]
+			["Capital was Washington, D.C.",'A']],//END OF STATES
+			[],//END OF BATTLES
+			[],//END OF REVIEW1
+			[],//END OF PEOPLE
+			[],//END OF CULTURE
+			[],//END OF REVIEW2
+			[]//END OF REVIEW3
 			];
 			
 			this.playerTexture = [];
@@ -351,26 +351,29 @@ function(PIXI, Screen, Images, Collisions) {
 		game.cheat_index = 0;
 		game.playerLives = 3;
 		game.round = 1;
-		game.enemies = 3;
+		game.enemies = game.questionNums[0];
 		game.yCoord = 0;
-		game.isActiveEnemy = false;
 		updateRoundsText(game);
 		updateLivesText(game);
 		updateLeftRoundsText(game);
-		game.stage.removeChild(game.enemy.sprite);
-		game.questionText.position.x = -100;
-		game.randomIndex = Math.floor(Math.random() * game.questionArr[game.round - 1].length);
-		game.enemy = new enemy_ship(new PIXI.MovieClip(game.enemyTexture),"Enemy",game.questionArr[game.round - 1][game.randomIndex][0],game.questionArr[game.round - 1][game.randomIndex][1]);
-		game.stage.addChild(game.enemy.sprite);
-		game.enemy.sprite.position.x = -100;
-		game.stage.removeChild(game.questionText);
 		game.stage.removeChild(game.scoreText);
 		game.score = 0;
 		game.scoreText = new PIXI.Text("Score: " + game.score,{font:"30px Arial "});
 		game.scoreText.position.x = 300;
 		game.scoreText.position.y = 0;
 		game.stage.addChild(game.scoreText);
-
+		removeShip(game);
+		game.isActiveEnemy = true;
+		game.randomIndex = Math.floor(Math.random() * game.questionArr[game.round - 1].length);
+		game.enemy = new enemy_ship(new PIXI.MovieClip(game.enemyTexture),"Enemy",game.questionArr[game.round - 1][game.randomIndex][0],game.questionArr[game.round - 1][game.randomIndex][1]);
+		game.yCoord = Math.floor(Math.random() * 100) + 1;
+		game.enemy.sprite.position.y = game.yCoord + 300;
+		game.questionText = new PIXI.Text(game.enemy.question,{font:"30px Arial ", fill:"red"});
+		game.questionText.position.x = -100;
+		game.questionText.position.y = game.yCoord-50 + 300;
+		game.stage.addChild(game.questionText);
+		game.stage.addChild(game.enemy.sprite);
+		game.enemy.sprite.position.x = -100;
 	}
 	function removeShip(game){
 		game.isActiveEnemy = false;
@@ -388,6 +391,8 @@ function(PIXI, Screen, Images, Collisions) {
 		game.playerShip.sprite.gotoAndPlay(6);
 		updateLivesText(game);
 		if(game.playerLives < 1){
+			removeShip(game);
+			game.enemy.sprite.gotoAndStop(12);
 			alert("YOU LOSE!");
 			game.music.pause();
 			TestWorldScreen.music.play();
