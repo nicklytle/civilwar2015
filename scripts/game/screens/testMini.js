@@ -420,11 +420,11 @@ function(PIXI, Screen, Images, Collisions) {
 		  this.enemyTimer--;
 		  updateTimerText(this);
 		  
-		  if(this.playerShip.sprite.currentFrame == 4){
+		  if(this.playerShip.sprite.currentFrame == 5){
 			this.playerShip.sprite.gotoAndStop(0);
 		  }
 		  
-		 if(this.playerShip.sprite.currentFrame == 15){
+		 if(this.playerShip.sprite.currentFrame == 13){
 			this.playerShip.sprite.gotoAndStop(0);
 		  }
 		  
