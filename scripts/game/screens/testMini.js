@@ -77,13 +77,242 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 			["Vermont",'A'],
 			["West Virginia",'A'],
 			["Wisconsin",'A'],
-			["Capital was Washington, D.C.",'A']],
-			[["Battle1",'B'],["Battle2",'A']],
-			[],
-			[],
-			[],
-			[],
-			[]
+			["Capital was Washington, D.C.",'A']],//END OF STATES
+			[["Fort Sumter Victory",'B'],
+			["First Battle of Bull Run Victory",'B'],
+			["Second Battle of Bull Run Victory",'B'],
+			["Battle of Fredericksburg Victory",'B'],
+			["Battle of Chancellorsville Victory",'B'],
+			["Northern Virginia Campaign Victory",'B'],
+			["Lost the War",'B'],
+			["Less Soldiers Lost",'B'],
+			["Smaller Army",'B'],
+			["General Pickett’s Charge",'B'],
+			["Merrimack",'B'],
+			["Gettysburg Victory",'A'],
+			["Battle of Vicksburg Victory",'A'],
+			["Antietam Victory",'A'],
+			["Won the War",'A'],
+			["Bigger Army",'A'],
+			["Anaconda Plan",'A'],
+			["Lost More Soldiers",'A'],
+			["Battle of Appomattox Court House Victory",'A'],
+			["Battle of Petersburg Victory",'A'],
+			["Monitor",'A']],//END OF BATTLES
+			[["South Carolina",'B'],
+			["Mississippi",'B'],
+			["Florida",'B'],
+			["Alabama",'B'],
+			["Georgia",'B'],
+			["Louisiana",'B'],
+			["Texas",'B'],
+			["Virginia",'B'],
+			["Arkansas",'B'],
+			["North Carolina",'B'],
+			["Tennessee",'B'],
+			["Capital was Richmond, VA",'B'],
+			["California",'A'],
+			["Connecticut",'A'],
+			["Delaware",'A'],
+			["Illinois",'A'],
+			["Indiana",'A'],
+			["Iowa",'A'],
+			["Kansas",'A'],
+			["Kentucky",'A'],
+			["Maine",'A'],
+			["Maryland",'A'],
+			["Massachusetts",'A'],
+			["Michigan",'A'],
+			["Minnesota",'A'],
+			["Missouri",'A'],
+			["Nevada",'A'],
+			["New Hampshire",'A'],
+			["New Jersey",'A'],
+			["New York",'A'],
+			["Ohio",'A'],
+			["Oregon",'A'],
+			["Pennsylvania",'A'],
+			["Rhode Island",'A'],
+			["Vermont",'A'],
+			["West Virginia",'A'],
+			["Wisconsin",'A'],
+			["Capital was Washington, D.C.",'A'],
+			["Fort Sumter Victory",'B'],
+			["First Battle of Bull Run Victory",'B'],
+			["Second Battle of Bull Run Victory",'B'],
+			["Battle of Fredericksburg Victory",'B'],
+			["Battle of Chancellorsville Victory",'B'],
+			["Northern Virginia Campaign Victory",'B'],
+			["Lost the War",'B'],
+			["Less Soldiers Lost",'B'],
+			["Smaller Army",'B'],
+			["General Pickett’s Charge",'B'],
+			["Merrimack",'B'],
+			["Gettysburg Victory",'A'],
+			["Battle of Vicksburg Victory",'A'],
+			["Antietam Victory",'A'],
+			["Won the War",'A'],
+			["Bigger Army",'A'],
+			["Anaconda Plan",'A'],
+			["Lost More Soldiers",'A'],
+			["Battle of Appomattox Court House Victory",'A'],
+			["Battle of Petersburg Victory",'A'],
+			["Monitor",'A']],//END OF REVIEW1
+			[["General Robert E. Lee",'B'],
+			["Thomas “Stonewall” Jackson",'B'],
+			["Jefferson Davis",'B'],
+			["General Pickett",'B'],
+			["General J.E.B. Stuart",'B'],
+			["Abraham Lincoln",'A'],
+			["General Ulysses S. Grant",'A'],
+			["General Sherman",'A'],
+			["General McClellan",'A'],
+			["General Custer",'A'],
+			["General Meade",'A'],
+			["Clara Barton",'A']],//END OF PEOPLE
+			[["“Battle Hymn of the Republic”",'A'],
+			["Industrialized Economy",'A'],
+			["Uncle Tom’s Cabin",'A'],
+			["More Urbanized",'A'],
+			["Emancipation Proclamation",'A'],
+			["Gettysburg Address",'A'],
+			["“House Divided Against It Self…”",'A'],
+			["Pro Tariffs",'A'],
+			["Strong Federal Government",'A'],
+			["Slaves were Soldiers",'A'],
+			["“Dixie”",'B'],
+			["Rebel Yell",'B'],
+			["State’s Rights",'B'],
+			["Stars and Bars",'B'],
+			["King Cotton",'B'],
+			["Stars and Stripes",'B'],
+			["Agricultural Economy",'B'],
+			["Rural",'B'],
+			["Anti Tariff",'B'],
+			["Slaves were Laborers",'B']],//END OF CULTURE
+			[["General Robert E. Lee",'B'],
+			["Thomas “Stonewall” Jackson",'B'],
+			["Jefferson Davis",'B'],
+			["General Pickett",'B'],
+			["General J.E.B. Stuart",'B'],
+			["Abraham Lincoln",'A'],
+			["General Ulysses S. Grant",'A'],
+			["General Sherman",'A'],
+			["General McClellan",'A'],
+			["General Custer",'A'],
+			["General Meade",'A'],
+			["Clara Barton",'A'],
+			["“Battle Hymn of the Republic”",'A'],
+			["Industrialized Economy",'A'],
+			["Uncle Tom’s Cabin",'A'],
+			["More Urbanized",'A'],
+			["Emancipation Proclamation",'A'],
+			["Gettysburg Address",'A'],
+			["“House Divided Against It Self…”",'A'],
+			["Pro Tariffs",'A'],
+			["Strong Federal Government",'A'],
+			["Slaves were Soldiers",'A'],
+			["“Dixie”",'B'],
+			["Rebel Yell",'B'],
+			["State’s Rights",'B'],
+			["Stars and Bars",'B'],
+			["King Cotton",'B'],
+			["Stars and Stripes",'B'],
+			["Agricultural Economy",'B'],
+			["Rural",'B'],
+			["Anti Tariff",'B'],
+			["Slaves were Laborers",'B']],//END OF REVIEW2
+			[["South Carolina",'B'],
+			["Mississippi",'B'],
+			["Florida",'B'],
+			["Alabama",'B'],
+			["Georgia",'B'],
+			["Louisiana",'B'],
+			["Texas",'B'],
+			["Virginia",'B'],
+			["Arkansas",'B'],
+			["North Carolina",'B'],
+			["Tennessee",'B'],
+			["Capital was Richmond, VA",'B'],
+			["California",'A'],
+			["Connecticut",'A'],
+			["Delaware",'A'],
+			["Illinois",'A'],
+			["Indiana",'A'],
+			["Iowa",'A'],
+			["Kansas",'A'],
+			["Kentucky",'A'],
+			["Maine",'A'],
+			["Maryland",'A'],
+			["Massachusetts",'A'],
+			["Michigan",'A'],
+			["Minnesota",'A'],
+			["Missouri",'A'],
+			["Nevada",'A'],
+			["New Hampshire",'A'],
+			["New Jersey",'A'],
+			["New York",'A'],
+			["Ohio",'A'],
+			["Oregon",'A'],
+			["Pennsylvania",'A'],
+			["Rhode Island",'A'],
+			["Vermont",'A'],
+			["West Virginia",'A'],
+			["Wisconsin",'A'],
+			["Capital was Washington, D.C.",'A'],
+			["Fort Sumter Victory",'B'],
+			["First Battle of Bull Run Victory",'B'],
+			["Second Battle of Bull Run Victory",'B'],
+			["Battle of Fredericksburg Victory",'B'],
+			["Battle of Chancellorsville Victory",'B'],
+			["Northern Virginia Campaign Victory",'B'],
+			["Lost the War",'B'],
+			["Less Soldiers Lost",'B'],
+			["Smaller Army",'B'],
+			["General Pickett’s Charge",'B'],
+			["Merrimack",'B'],
+			["Gettysburg Victory",'A'],
+			["Battle of Vicksburg Victory",'A'],
+			["Antietam Victory",'A'],
+			["Won the War",'A'],
+			["Bigger Army",'A'],
+			["Anaconda Plan",'A'],
+			["Lost More Soldiers",'A'],
+			["Battle of Appomattox Court House Victory",'A'],
+			["Battle of Petersburg Victory",'A'],
+			["Monitor",'A'],
+			["General Robert E. Lee",'B'],
+			["Thomas “Stonewall” Jackson",'B'],
+			["Jefferson Davis",'B'],
+			["General Pickett",'B'],
+			["General J.E.B. Stuart",'B'],
+			["Abraham Lincoln",'A'],
+			["General Ulysses S. Grant",'A'],
+			["General Sherman",'A'],
+			["General McClellan",'A'],
+			["General Custer",'A'],
+			["General Meade",'A'],
+			["Clara Barton",'A'],
+			["“Battle Hymn of the Republic”",'A'],
+			["Industrialized Economy",'A'],
+			["Uncle Tom’s Cabin",'A'],
+			["More Urbanized",'A'],
+			["Emancipation Proclamation",'A'],
+			["Gettysburg Address",'A'],
+			["“House Divided Against It Self…”",'A'],
+			["Pro Tariffs",'A'],
+			["Strong Federal Government",'A'],
+			["Slaves were Soldiers",'A'],
+			["“Dixie”",'B'],
+			["Rebel Yell",'B'],
+			["State’s Rights",'B'],
+			["Stars and Bars",'B'],
+			["King Cotton",'B'],
+			["Stars and Stripes",'B'],
+			["Agricultural Economy",'B'],
+			["Rural",'B'],
+			["Anti Tariff",'B'],
+			["Slaves were Laborers",'B']]//END OF REVIEW3
 			];
 			
 			this.playerTexture = [];
@@ -195,11 +424,11 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 		  this.enemyTimer--;
 		  updateTimerText(this);
 		  
-		  if(this.playerShip.sprite.currentFrame == 4){
+		  if(this.playerShip.sprite.currentFrame == 5){
 			this.playerShip.sprite.gotoAndStop(0);
 		  }
 		  
-		 if(this.playerShip.sprite.currentFrame == 15){
+		 if(this.playerShip.sprite.currentFrame == 13){
 			this.playerShip.sprite.gotoAndStop(0);
 		  }
 		  
@@ -214,7 +443,7 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 		  //Need to make the ships update their position, stopping once they hit a threshold
 		  //We should also include logic here to update points, end the game, or spawn enemies
 			if(this.enemies < 1){
-				if(this.round > 3){
+				if(this.round > 6){
 					alert("YOU WIN!");
 					this.music.pause();
 					//getHubScreen().music.play();
@@ -362,26 +591,29 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 		game.cheat_index = 0;
 		game.playerLives = 3;
 		game.round = 1;
-		game.enemies = 3;
+		game.enemies = game.questionNums[0];
 		game.yCoord = 0;
-		game.isActiveEnemy = false;
 		updateRoundsText(game);
 		updateLivesText(game);
 		updateLeftRoundsText(game);
-		game.stage.removeChild(game.enemy.sprite);
-		game.questionText.position.x = -100;
-		game.randomIndex = Math.floor(Math.random() * game.questionArr[game.round - 1].length);
-		game.enemy = new enemy_ship(new PIXI.MovieClip(game.enemyTexture),"Enemy",game.questionArr[game.round - 1][game.randomIndex][0],game.questionArr[game.round - 1][game.randomIndex][1]);
-		game.stage.addChild(game.enemy.sprite);
-		game.enemy.sprite.position.x = -100;
-		game.stage.removeChild(game.questionText);
 		game.stage.removeChild(game.scoreText);
 		game.score = 0;
 		game.scoreText = new PIXI.Text("Score: " + game.score,{font:"30px Arial "});
 		game.scoreText.position.x = 300;
 		game.scoreText.position.y = 0;
 		game.stage.addChild(game.scoreText);
-
+		removeShip(game);
+		game.isActiveEnemy = true;
+		game.randomIndex = Math.floor(Math.random() * game.questionArr[game.round - 1].length);
+		game.enemy = new enemy_ship(new PIXI.MovieClip(game.enemyTexture),"Enemy",game.questionArr[game.round - 1][game.randomIndex][0],game.questionArr[game.round - 1][game.randomIndex][1]);
+		game.yCoord = Math.floor(Math.random() * 100) + 1;
+		game.enemy.sprite.position.y = game.yCoord + 300;
+		game.questionText = new PIXI.Text(game.enemy.question,{font:"30px Arial ", fill:"red"});
+		game.questionText.position.x = -100;
+		game.questionText.position.y = game.yCoord-50 + 300;
+		game.stage.addChild(game.questionText);
+		game.stage.addChild(game.enemy.sprite);
+		game.enemy.sprite.position.x = -100;
 	}
 	function removeShip(game){
 		game.isActiveEnemy = false;
@@ -399,6 +631,8 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 		game.playerShip.sprite.gotoAndPlay(6);
 		updateLivesText(game);
 		if(game.playerLives < 1){
+			removeShip(game);
+			game.enemy.sprite.gotoAndStop(12);
 			alert("YOU LOSE!");
 			game.music.pause();
 			//getHubScreen().music.play();
