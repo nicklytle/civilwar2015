@@ -1,6 +1,10 @@
 define(
-  ['pixi', 'engine/classes/Screen', 'engine/graphics', 'engine/geometry'],
-function(PIXI, Screen, Images, Collisions) {
+  ['pixi', 'engine/classes/Screen', 'engine/graphics', 'engine/geometry',
+  'game/constants', 'engine/arrays'],
+function(PIXI, Screen, Images, Collisions, constants, arrays) {
+	function getHubScreen() {
+		return require('game/screens/GameHub');
+	}
 //console.log("GETHERE");
 				function enemy_ship(sprite, name, question, answer){
 					this.sprite = sprite;
@@ -213,8 +217,8 @@ function(PIXI, Screen, Images, Collisions) {
 				if(this.round > 3){
 					alert("YOU WIN!");
 					this.music.pause();
-					TestWorldScreen.music.play();
-					this.changeScreen(TestWorldScreen);
+					//getHubScreen().music.play();
+					this.changeScreen(getHubScreen());
 					resetGame(this);
 				}else{
 					this.round = this.round + 1;
@@ -252,7 +256,14 @@ function(PIXI, Screen, Images, Collisions) {
 		  },
 		  onKeyDown: function(keyCode)
 		  {
-
+		  	if (arrays.containsElement(constants.KEYS_EXIT, keyCode)) {
+		  		alert('Exiting game!');
+		  		resetGame(this);
+		  		this.music.pause();
+		  		this.changeScreen(getHubScreen());
+		  		console.log(this.nextScreen);
+		  		return;
+		  	}
 			/*if(keyCode == 67){
 				console.log("RESET!");
 				resetGame(this);
@@ -303,8 +314,8 @@ function(PIXI, Screen, Images, Collisions) {
 			if (keyCode == 27)
 			{
 				this.music.pause();
-				TestWorldScreen.music.play();
-			  this.changeScreen(TestWorldScreen);
+				//getHubScreen().music.play();
+			  this.changeScreen(getHubScreen());
 			}
 		  },
 		  onMouseDown: function(point)
@@ -390,8 +401,8 @@ function(PIXI, Screen, Images, Collisions) {
 		if(game.playerLives < 1){
 			alert("YOU LOSE!");
 			game.music.pause();
-			TestWorldScreen.music.play();
-			game.changeScreen(TestWorldScreen);
+			//getHubScreen().music.play();
+			game.changeScreen(getHubScreen());
 			resetGame(game);
 		}
 		game.playerHit.play();

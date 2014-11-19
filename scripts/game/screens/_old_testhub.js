@@ -426,7 +426,6 @@ define(
 			*/
 
 			if (this.updated) {
-				window.player = this.bunny;
 				var player = this.bunny;
 				var geometry = Collisions;
 				var pBounds = player.getBounds();

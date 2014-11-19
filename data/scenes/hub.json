@@ -1,0 +1,87 @@
+{
+  "background": {
+    "texture": "env/newtown.png",
+    "x": -100,
+    "y": -100
+  },
+  "player": {
+    "scale": 0.2
+  },
+  "npcs": [
+    {
+      "name": "Harriet Tubman",
+      "texture": "tubman.png",
+      "scale": 0.2,
+      "x": 1000,
+      "y": 1000,
+      "dialog": [
+        "Got a lot of bundles of wood headed up this way. Are you a friend of the flying bondsmen?%Yes, I am!|What are you talking about?",
+        "Well I've got some parcel headed here by the Freedom Train. Care to help them out?|Never mind. Just an old woman rambling...",
+        "#startEscapeGame()|#END"
+      ]
+    },
+    {
+      "name": "Female Villager",
+      "texture": "femalevillager.png",
+      "scale": 0.2,
+      "x": 100,
+      "y": 0,
+      "dialog": [
+        "Did you hear about the battle at Hampton Roads?%Yes, I did!|What battle?",
+        "Can you imagine? Iron ships! Apparently that man over there was present during the battle!|A huge battle between two iron ships!  That young man over there was on one of them."
+      ]
+    },
+    {
+      "name": "Female Villager",
+      "texture": "femalevillager2.png",
+      "scale": 0.2,
+      "x": 400,
+      "y": 0,
+      "dialog": [
+        "That Union Soldier told me he just came back from Newport News."
+      ]
+    },
+    {
+      "name": "Male Villager",
+      "texture": "malevillager.png",
+      "scale": 0.2,
+      "x": 100,
+      "y": 400,
+      "dialog": [
+        "We're going to show those Yankees, you wait and see! The South is fine as it is - we don't need Lincoln!"
+      ]
+    },
+    {
+      "name": "Male Villager",
+      "texture": "malevillager2.png",
+      "scale": 0.2,
+      "x": 600,
+      "y": 400,
+      "dialog": [
+        "I don't know what my wife will do if I go to fight. The farm is enough work as it is."
+      ]
+    },
+    {
+      "name": "Union Soldier",
+      "texture": "unionsoldier.png",
+      "scale": 0.2,
+      "x": 1100,
+      "y": 0,
+      "dialog": [
+        "Do you have time to hear about my experiences on the Monitor?%Tell me more!|Maybe later...",
+        "Prepare for an amazing tale!|Some other time, then.",
+        "#startShipGame()|#END"
+      ]
+    },
+    {
+      "name": "Confederate Soldier",
+      "texture": "confederatesoldier.png",
+      "scale": 0.2,
+      "x": 200,
+      "y": 1100,
+      "dialog": [
+        "The Yankees have no honor. The pride of the Southern Gentlemen will prevail!"
+      ]
+    }
+  ]
+}

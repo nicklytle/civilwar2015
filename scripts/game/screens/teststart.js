@@ -1,9 +1,12 @@
 define(
-  ['pixi', 'engine/classes/Screen', '../constants', './testhub'],
-  function(PIXI, Screen, constants, hub) {
+  ['pixi', 'engine/classes/Screen', '../constants',
+  'game/screens/GameHub'],
+  function(PIXI, Screen, constants, GameHub) {
     return new Screen ({
       init: function() {
-	  
+        var self = this;
+        this.gameScreen = GameHub;
+        // console.log($);
 	  
         this.testWords = new PIXI.Text("A NATION DIVIDED", {
           font : "80px Times, Times New Roman, bold",
@@ -19,7 +22,7 @@ define(
         this.testWords.position.y = constants.STAGE_H/2 - 25;
 		
 		
-		this.testWords2 = new PIXI.Text("Click to begin", {
+        this.status = new PIXI.Text("Click to begin!", {
           font : "56px Times, Times New Roman, serif",
           fill: "#000000",
           wordWrap: true,
@@ -27,13 +30,12 @@ define(
           align: 'center',
         });
 		
-		this.testWords2.anchor.x = 0.5;
-        this.testWords2.anchor.y = 0.5;
-        this.testWords2.position.x = constants.STAGE_W/2;
-        this.testWords2.position.y = constants.STAGE_H/2 + 100;
-
+		    this.status.anchor.x = 0.5;
+        this.status.anchor.y = 0.5;
+        this.status.position.x = constants.STAGE_W/2;
+        this.status.position.y = constants.STAGE_H/2 + 100;
         this.stage.addChild(this.testWords);
-		this.stage.addChild(this.testWords2);
+		    this.stage.addChild(this.status);
 
       },
 	  
@@ -41,7 +43,8 @@ define(
 	  
 	  
       onMouseDown: function(point) {
-        this.changeScreen(hub);
+        if (!this.gameScreen) return;
+        this.changeScreen(this.gameScreen);
       },
     });
   }
