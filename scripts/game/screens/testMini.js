@@ -23,7 +23,7 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 		init: function(){
 				//Need to declare a "ship" type to match questions, answers, and sprites
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
-			this.music = new Audio('/assets/music/(ShipGame)_DrunkenSailor.wav');
+			this.music = new Audio('assets/music/(ShipGame)_DrunkenSailor.wav');
 			this.music.loop = true;
 			this.shipHit = new Audio(
 			'assets/music/(ShipGame)_EnemyHit.wav');
@@ -329,12 +329,12 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 			this.playerTexture.push(Images.getTexture("ironcladsplode4.png"));
 			this.playerTexture.push(Images.getTexture("ironcladsplode5.png"));
 			this.playerTexture.push(Images.getTexture("ironcladsplode6.png"));
-			this.playerTexture.push(Images.getTexture("ironcladsplode7.png"));
-			this.playerTexture.push(Images.getTexture("ironcladsplode8.png"));
-			this.playerTexture.push(Images.getTexture("ironcladsplode9.png"));
-			this.playerTexture.push(Images.getTexture("ironcladsplode10.png"));
-			this.playerTexture.push(Images.getTexture("ironcladsplode11.png"));
-			this.playerTexture.push(Images.getTexture("ironcladsplode12.png"));
+			//this.playerTexture.push(Images.getTexture("ironcladsplode7.png"));
+			//this.playerTexture.push(Images.getTexture("ironcladsplode8.png"));
+			//this.playerTexture.push(Images.getTexture("ironcladsplode9.png"));
+			//this.playerTexture.push(Images.getTexture("ironcladsplode10.png"));
+			//this.playerTexture.push(Images.getTexture("ironcladsplode11.png"));
+			//this.playerTexture.push(Images.getTexture("ironcladsplode12.png"));
 			this.playerShip = new enemy_ship(new PIXI.MovieClip(this.playerTexture),"Player","","Q");
 			this.playerShip.sprite.position.x = 370;
 			this.playerShip.sprite.position.y = 240;

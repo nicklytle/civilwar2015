@@ -1,10 +1,10 @@
 requirejs.config({
   urlArgs: "bust=" +  (new Date()).getTime(), // remove this for production
-  baseUrl: "/scripts/lib",
+  // baseUrl: "./scripts/lib",
   paths: {
-    global: "/scripts/global",
-    engine: "/scripts/engine",
-    game: "/scripts/game",
+    // global: "./scripts/global",
+    engine: "engine",
+    game: "game",
   },
   shim: {
     'pixi': {
