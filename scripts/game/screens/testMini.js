@@ -185,7 +185,7 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 			["State’s Rights",'B'],
 			["Stars and Bars",'B'],
 			["King Cotton",'B'],
-			["Stars and Stripes",'B'],
+			["Stars and Stripes",'A'],
 			["Agricultural Economy",'B'],
 			["Rural",'B'],
 			["Anti Tariff",'B'],

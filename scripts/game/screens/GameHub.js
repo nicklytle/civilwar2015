@@ -6,7 +6,7 @@ define(
       this.changeScreen(EscapeScreen);
     };
     hubScene.startShipGame = function() {
-      alert(ShipScreen);
+      //alert(ShipScreen);
       this.changeScreen(ShipScreen);
     };
     return hubScene;

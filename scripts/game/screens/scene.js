@@ -69,7 +69,7 @@ define(
       }
       return new Screen({
         // Screen overrides
-        backgroundColor: 0x003366,
+        backgroundColor: 0x3a7216,
         init: function() {
           var self = this;
           self.startDialog = startDialog;
