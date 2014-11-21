@@ -88,6 +88,7 @@ define(
 
 		  self.personTalk = new Audio(
 			'./assets/sounds/TalkPerson.wav');
+			
 
           self.startDialog = startDialog;
           self.advanceDialog = advanceDialog;
