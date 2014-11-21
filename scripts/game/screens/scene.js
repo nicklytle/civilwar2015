@@ -71,7 +71,15 @@ define(
         // Screen overrides
         backgroundColor: 0x3a7216,
         init: function() {
+		
+		
+		
           var self = this;
+		  this.staging = 0;
+
+		  self.personTalk = new Audio(
+			'./assets/sounds/TalkPerson.wav');
+
           self.startDialog = startDialog;
           self.advanceDialog = advanceDialog;
           self.endDialog = endDialog;
@@ -111,6 +119,55 @@ define(
             var pScale = pData.scale || 1;
             player.scale = new PIXI.Point(pScale, pScale);
             self.stage.addChild(player);
+			
+					  			//ITEMS RELATED TO OPENING
+			
+			self.graphics = new PIXI.Graphics();
+
+			self.graphics.beginFill(0xFFFFFF);
+
+			// set the line style to have a width of 5 and set the color to red
+			self.graphics.lineStyle(5, 0x000000);
+
+			// draw a rectangle
+			self.graphics.drawRect(100, 100, 600, 400);
+
+			self.stage.addChild(self.graphics);
+			
+			self.otherText = new PIXI.Text("Welcome to A Nation Divided!",{font:"40px Arial "});
+			self.otherText.position.x = 125;
+			self.otherText.position.y = 125;
+			self.stage.addChild(self.otherText);
+			
+			self.otherText3 = new PIXI.Text("The year is 1864 and you have just arrived in a new town.",{font:"20px Arial "});
+			self.otherText3.position.x =  125;
+			self.otherText3.position.y = 225;
+			self.stage.addChild(self.otherText3);
+			
+			self.otherText4 = new PIXI.Text("Everyone here has been affected by the War in some way and has a unique story to tell.",{font:"16px Arial "});
+			self.otherText4.position.x = 105;
+			self.otherText4.position.y = 300;
+			self.stage.addChild(self.otherText4);
+			
+			self.otherText6 = new PIXI.Text("Interact with the town members and see if you too can experience this war first hand.",{font:"16px Arial "});
+			self.otherText6.position.x = 105;
+			self.otherText6.position.y = 325;
+			self.stage.addChild(self.otherText6);
+
+			
+			self.otherText5 = new PIXI.Text("Move with WASD or the arrows and press space to talk.",{font:"16px Arial "});
+			self.otherText5.position.x = 150;
+			self.otherText5.position.y = 400;
+			self.stage.addChild(self.otherText5);
+
+
+
+			
+			self.otherText2 = new PIXI.Text("Press Space to Start!",{font:"40px Arial "});
+			self.otherText2.position.x = 150;
+			self.otherText2.position.y = 450;
+			self.stage.addChild(self.otherText2);
+
             self.player = player;
             // npcs
             self.npcs = [];
@@ -196,13 +253,21 @@ define(
           }).fail(function(_, status){
             console.error("FAILED TO LOAD JSON: " + status)
           });
-          self.loaded = true;
+		  
+			
+			          self.loaded = true;
+
+
           // console.log(self.player);
         },
         update: function(delta) {
           var self = this;
           if (!self.loaded) return;
           var player = self.player;
+		  
+		  
+		  if(this.staging==1)
+		  {
           // actions that can't occur during dialog!
           if (!self.speaker) {
             // player movement
@@ -259,6 +324,7 @@ define(
             constants.STAGE_H
           );
           self.updated = true;
+		  }
         },
         onKeyDown: function(keyCode) {
           var self = this;
@@ -266,7 +332,24 @@ define(
           if (!self.loaded) return;
           // console.log(keyCode);
           // console.log(constants.KEYS_INTERACT);
+		  
+		  
           var interacted = arrays.containsElement(constants.KEYS_INTERACT, keyCode);
+		  
+		  if(this.staging==0 && interacted){
+		  
+		  this.staging++;
+		  self.stage.removeChild(self.otherText);
+		  self.stage.removeChild(self.otherText2);
+		  self.stage.removeChild(self.otherText3);
+		  self.stage.removeChild(self.otherText4);
+		  self.stage.removeChild(self.otherText5);
+		  self.stage.removeChild(self.otherText6);
+		  self.stage.removeChild(self.graphics);
+
+		  
+		  }
+
           if (interacted && !self.speaker) {
             var speaker = null;
             self.npcs.forEach(function(npc) {
@@ -279,6 +362,9 @@ define(
             });
             if (speaker) {
               self.startDialog(speaker);
+			  this.personTalk.play();
+			  this.personTalk.currentTime=0;
+
             }
           } else if (interacted && self.speaker) {
             self.advanceDialog();

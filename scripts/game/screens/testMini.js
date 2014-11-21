@@ -1,6 +1,7 @@
 define(
   ['pixi', 'engine/classes/Screen', 'engine/graphics', 'engine/geometry',
   'game/constants', 'engine/arrays'],
+  
 function(PIXI, Screen, Images, Collisions, constants, arrays) {
 	function getHubScreen() {
 		return require('game/screens/GameHub');
@@ -19,10 +20,14 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 						}
 					}
 				}
+				
+
 	var SampleMiniGame = new Screen({
+	
 		init: function(){
 				//Need to declare a "ship" type to match questions, answers, and sprites
 			  //Need to initialize a question box, an answer box, our ship, and start the enemies
+			this.staging = 0;
 			this.music = new Audio('assets/music/(ShipGame)_DrunkenSailor.wav');
 			this.music.loop = true;
 			this.shipHit = new Audio(
@@ -398,6 +403,59 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 			this.timerText.position.y = 40;
 			this.stage.addChild(this.timerText);
 			
+			//ITEMS RELATED TO OPENING
+			
+			this.graphics = new PIXI.Graphics();
+
+			this.graphics.beginFill(0xFFFFFF);
+
+			// set the line style to have a width of 5 and set the color to red
+			this.graphics.lineStyle(5, 0x000000);
+
+			// draw a rectangle
+			this.graphics.drawRect(100, 100, 600, 400);
+
+			this.stage.addChild(this.graphics);
+			
+			this.otherText = new PIXI.Text("Ahoy, Sailor!",{font:"60px Arial "});
+			this.otherText.position.x = 225;
+			this.otherText.position.y = 125;
+			this.stage.addChild(this.otherText);
+			
+			this.otherText3 = new PIXI.Text("Welcome to the USS Monitor!",{font:"30px Arial "});
+			this.otherText3.position.x =  110;
+			this.otherText3.position.y = 225;
+			this.stage.addChild(this.otherText3);
+			
+			this.otherText4 = new PIXI.Text("If you see a ship that says something related to the Union, Press A!",{font:"18px Arial "});
+			this.otherText4.position.x = 105;
+			this.otherText4.position.y = 300;
+			this.stage.addChild(this.otherText4);
+			
+			this.otherText5 = new PIXI.Text("If you see a ship that says something related to the Confederacy, Press B!",{font:"18px Arial "});
+			this.otherText5.position.x = 105;
+			this.otherText5.position.y = 350;
+			this.stage.addChild(this.otherText5);
+
+
+
+			
+			this.otherText2 = new PIXI.Text("Press A to Start!",{font:"40px Arial "});
+			this.otherText2.position.x = 250;
+			this.otherText2.position.y = 450;
+			this.stage.addChild(this.otherText2);
+
+			
+
+
+			
+			this.staging = 0;
+			
+			
+			
+
+			
+			
 			this.randomIndex = Math.floor(Math.random() * this.questionArr[this.round - 1].length);
 			//console.log(this.randomIndex);
 			this.enemy = new enemy_ship(new PIXI.MovieClip(this.enemyTexture),"Enemy",this.questionArr[this.round - 1][this.randomIndex][0],this.questionArr[this.round - 1][this.randomIndex][1]);
@@ -410,6 +468,8 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 			this.questionText.position.x = -100;
 			this.questionText.position.y = this.yCoord-50 + 300;
 			this.stage.addChild(this.questionText);
+			
+			
 
 			//this.questionText = new PIXI.Text(this.questions[0],{font:"30px Arial ", fill:"red"});
             //this.questionText.position.x = -100;
@@ -421,6 +481,8 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 		  },
 		  update: function(delta)
 		  {
+		  console.log(this.staging);
+		  if(this.staging==1){
 		  this.enemyTimer--;
 		  updateTimerText(this);
 		  
@@ -482,9 +544,12 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 					this.questionText.position.x++;
 				}
 			}
+			}
 		  },
 		  onKeyDown: function(keyCode)
 		  {
+			console.log(this.staging);
+			if(this.staging==1){
 		  	if (arrays.containsElement(constants.KEYS_EXIT, keyCode)) {
 		  		alert('Exiting game!');
 		  		resetGame(this);
@@ -545,6 +610,22 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 				this.music.pause();
 				//getHubScreen().music.play();
 			  this.changeScreen(getHubScreen());
+			}
+			}
+			if(this.staging==0){
+				if(keyCode == 65){
+					console.log("PRESSED A");
+			  }
+			  this.staging++;
+			  this.stage.removeChild(this.graphics);
+			  this.stage.removeChild(this.otherText);
+			  this.stage.removeChild(this.otherText2);
+			  this.stage.removeChild(this.otherText3);
+			  this.stage.removeChild(this.otherText4);
+			  this.stage.removeChild(this.otherText5);
+
+
+			
 			}
 		  },
 		  onMouseDown: function(point)
