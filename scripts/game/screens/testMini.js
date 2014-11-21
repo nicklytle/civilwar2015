@@ -222,7 +222,7 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 			["State’s Rights",'B'],
 			["Stars and Bars",'B'],
 			["King Cotton",'B'],
-			["Stars and Stripes",'B'],
+			["Stars and Stripes",'A'],
 			["Agricultural Economy",'B'],
 			["Rural",'B'],
 			["Anti Tariff",'B'],
@@ -313,7 +313,7 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 			["State’s Rights",'B'],
 			["Stars and Bars",'B'],
 			["King Cotton",'B'],
-			["Stars and Stripes",'B'],
+			["Stars and Stripes",'A'],
 			["Agricultural Economy",'B'],
 			["Rural",'B'],
 			["Anti Tariff",'B'],
@@ -552,6 +552,7 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 			if(this.staging==1){
 		  	if (arrays.containsElement(constants.KEYS_EXIT, keyCode)) {
 		  		alert('Exiting game!');
+				this.stage.removeChild(this.enemy.sprite);
 		  		resetGame(this);
 		  		this.music.pause();
 		  		this.changeScreen(getHubScreen());
