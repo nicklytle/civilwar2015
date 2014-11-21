@@ -22,6 +22,15 @@
     },
 	{
       "name": "",
+      "texture": "harriet.png",
+      "scale": 1.0,
+      "x": 1500,
+      "y": 1200,
+      "dialog": [
+	]
+    },
+	{
+      "name": "",
       "texture": "tree.png",
       "scale": 1,
       "x": 2500,

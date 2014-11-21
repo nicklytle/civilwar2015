@@ -1,5 +1,6 @@
 // TODO some kind of nice loading message...
 define(
+
   ['pixi', 'engine/classes/Screen', 'engine/graphics', 'engine/input',
   'engine/geometry', 'engine/helpers', 'engine/arrays', 'game/constants'],
   function(PIXI, Screen, graphics, input,
@@ -7,10 +8,7 @@ define(
     'use strict';
     return function(url) {
 	
-		function testFunction(){
-		console.log("Ahoy");
 		
-		}
       function startDialog(npc) {
         var self = this;
         if (!npc.dialog) return;
