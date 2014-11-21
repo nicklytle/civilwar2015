@@ -3,7 +3,9 @@ define(
   function(scene, ShipScreen, EscapeScreen, nextscene) {
 	
 	var famousarray = ["Test", "Jerk"];
+	var paperarray = ["0", "Dog", "Salamander"];
 	var count = 0;
+	var papercount = 0;
     var hubScene = scene('data/scenes/hub.json');
 	hubScene.music = new Audio('/assets/music/town_music.ogg');
 	hubScene.music.loop = true;
@@ -16,6 +18,101 @@ define(
 	  hubScene.music.pause();
 	  ShipScreen.music.play();
       this.changeScreen(ShipScreen);
+    };
+	hubScene.paper1 = function() {
+	var obj = "1";
+
+	 var i = paperarray.length;
+	 var nocontains = true;
+    for (i=0;i<paperarray.length;i++) {
+		//console.log(famousarray[i]);
+       if (paperarray[i] === obj) {
+	   nocontains = false;
+       }
+    }
+    if(nocontains){
+	papercount++;
+	paperarray.push(obj);
+console.log(papercount);
+//console.log(famousarray[i]);
+alert("Newspaper " + papercount + "/5 Found!");
+}
+    };
+	hubScene.paper2 = function() {
+	var obj = "2";
+
+	 var i = paperarray.length;
+	 var nocontains = true;
+    for (i=0;i<paperarray.length;i++) {
+		//console.log(famousarray[i]);
+       if (paperarray[i] === obj) {
+	   nocontains = false;
+       }
+    }
+    if(nocontains){
+	papercount++;
+	paperarray.push(obj);
+console.log(papercount);
+//console.log(famousarray[i]);
+alert("Newspaper " + papercount + "/5 Found!");
+}
+    };
+	hubScene.paper3 = function() {
+	var obj = "3";
+
+	 var i = paperarray.length;
+	 var nocontains = true;
+    for (i=0;i<paperarray.length;i++) {
+		//console.log(famousarray[i]);
+       if (paperarray[i] === obj) {
+	   nocontains = false;
+       }
+    }
+    if(nocontains){
+	papercount++;
+	paperarray.push(obj);
+console.log(papercount);
+//console.log(famousarray[i]);
+alert("Newspaper " + papercount + "/5 Found!");
+}
+    };
+	hubScene.paper4 = function() {
+	var obj = "4";
+
+	 var i = paperarray.length;
+	 var nocontains = true;
+    for (i=0;i<paperarray.length;i++) {
+		//console.log(famousarray[i]);
+       if (paperarray[i] === obj) {
+	   nocontains = false;
+       }
+    }
+    if(nocontains){
+	papercount++;
+	paperarray.push(obj);
+console.log(papercount);
+//console.log(famousarray[i]);
+alert("Newspaper " + papercount + "/5 Found!");
+}
+    };
+	hubScene.paper5 = function() {
+	var obj = "5";
+
+	 var i = paperarray.length;
+	 var nocontains = true;
+    for (i=0;i<paperarray.length;i++) {
+		//console.log(famousarray[i]);
+       if (paperarray[i] === obj) {
+	   nocontains = false;
+       }
+    }
+    if(nocontains){
+	papercount++;
+	paperarray.push(obj);
+console.log(papercount);
+//console.log(famousarray[i]);
+alert("Newspaper " + papercount + "/5 Found!");
+}
     };
 	hubScene.test = function() {
 	var obj = "Harriet Tubman";

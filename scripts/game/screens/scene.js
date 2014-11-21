@@ -149,7 +149,7 @@ define(
 			self.otherText.position.y = 125;
 			self.stage.addChild(self.otherText);
 			
-			self.otherText3 = new PIXI.Text("The year is 1864 and you have just arrived in a new town.",{font:"20px Arial "});
+			self.otherText3 = new PIXI.Text("The year is 1863 and you have just arrived in a new town.",{font:"20px Arial "});
 			self.otherText3.position.x =  125;
 			self.otherText3.position.y = 225;
 			self.stage.addChild(self.otherText3);

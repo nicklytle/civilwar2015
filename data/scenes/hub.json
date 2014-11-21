@@ -66,6 +66,61 @@
 	]
     },
 	{
+      "name": "Harper's Weekly",
+      "texture": "newspaper.png",
+      "scale": 0.2,
+      "x": 800,
+      "y": 800,
+      "dialog": [
+	  "MAJOR-GENERAL GEORGE G. MEADE, THE NEW COMMANDER OF THE ARMY OF THE POTOMAC.",
+	  "#paper1()"
+	]
+    },
+	{
+      "name": "Harper's Weekly",
+      "texture": "newspaper.png",
+      "scale": 0.2,
+      "x": 2200,
+      "y": 2100,
+      "dialog": [
+	  "EXECUTION, BY HANGING, OF TWO REBEL SPIES, WILLIAMS AND PETERS, IN THE ARMY OF THE CUMBERLAND",
+	  "#paper2()"
+	]
+    },
+	{
+      "name": "Harper's Weekly",
+      "texture": "newspaper.png",
+      "scale": 0.2,
+      "x": 300,
+      "y": 500,
+      "dialog": [
+	  "NEW PORTRAIT OF MAJOR-GENERAL GRANT THE HERO OF VICKSBURG ",
+	  "#paper3()"
+	]
+    },
+	{
+      "name": "Harper's Weekly",
+      "texture": "newspaper.png",
+      "scale": 0.2,
+      "x": 2200,
+      "y": 200,
+      "dialog": [
+	  "THE ARMY OF THE CUMBERLAND.-A TROOP TRAIN PASSING THROUGH THE BIG CUT ON THE LOUISVILLE AND NASHVILLE RAILROAD",
+	  "#paper4()"
+	]
+    },
+	{
+      "name": "Harper's Weekly",
+      "texture": "newspaper.png",
+      "scale": 0.2,
+      "x": 400,
+      "y": 1800,
+      "dialog": [
+	  " THE SIEGE OF CHARLESTON—THE BOATS FOR THE ATTACK OF GREGG ON THEIR WAY. ",
+	  "#paper5()"
+	]
+    },
+	{
       "name": "",
       "texture": "tree.png",
       "scale": 1,
