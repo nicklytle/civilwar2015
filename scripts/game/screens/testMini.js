@@ -508,7 +508,7 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 				if(this.round > 6){
 					alert("YOU WIN!");
 					this.music.pause();
-					//getHubScreen().music.play();
+					getHubScreen().music.play();
 					this.changeScreen(getHubScreen());
 					resetGame(this);
 				}else{
@@ -555,6 +555,7 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 				this.stage.removeChild(this.enemy.sprite);
 		  		resetGame(this);
 		  		this.music.pause();
+				getHubScreen().music.play();
 		  		this.changeScreen(getHubScreen());
 		  		console.log(this.nextScreen);
 		  		return;
@@ -609,7 +610,7 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 			if (keyCode == 27)
 			{
 				this.music.pause();
-				//getHubScreen().music.play();
+				getHubScreen().music.play();
 			  this.changeScreen(getHubScreen());
 			}
 			}
@@ -717,7 +718,7 @@ function(PIXI, Screen, Images, Collisions, constants, arrays) {
 			game.enemy.sprite.gotoAndStop(12);
 			alert("YOU LOSE!");
 			game.music.pause();
-			//getHubScreen().music.play();
+			getHubScreen().music.play();
 			game.changeScreen(getHubScreen());
 			resetGame(game);
 		}
