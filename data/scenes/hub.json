@@ -16,8 +16,8 @@
       "y": 1000,
       "dialog": [
         "Got a lot of bundles of wood headed up this way. Are you a friend of the flying bondsmen?%Yes, I am!|What are you talking about?",
-        "Well I've got some parcel headed here by the Freedom Train. Care to help them out?|Never mind. Just an old woman rambling...",
-        "#startEscapeGame()|#END"
+        "Well I've got some parcel headed to the Freedom Train. Maybe you could help out sometime?|Never mind. Dust an old woman rambling...",
+		"#test()|#END"
 	]
     },
 	{

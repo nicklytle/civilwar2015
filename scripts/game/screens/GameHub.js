@@ -1,6 +1,6 @@
 define(
-  ['./scene', 'game/screens/testMini', 'game/screens/testescape'],
-  function(scene, ShipScreen, EscapeScreen) {
+  ['./scene', 'game/screens/testMini', 'game/screens/testescape', 'game/screens/nextscene'],
+  function(scene, ShipScreen, EscapeScreen, nextscene) {
     var hubScene = scene('data/scenes/hub.json');
 	hubScene.music = new Audio('/assets/music/town_music.ogg');
 	hubScene.music.play();

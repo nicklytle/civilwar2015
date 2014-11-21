@@ -6,6 +6,11 @@ define(
       geometry, helpers, arrays, constants) {
     'use strict';
     return function(url) {
+	
+		function testFunction(){
+		console.log("Ahoy");
+		
+		}
       function startDialog(npc) {
         var self = this;
         if (!npc.dialog) return;
@@ -16,6 +21,8 @@ define(
         // self.dialogBox.setText(npc.dialog[0]);
         // self.dialog.visible = true;
       }
+	  
+	  
       function advanceDialog(respIdx) {
         var self = this;
         if (self.responses.visible && !respIdx) return;
@@ -67,6 +74,10 @@ define(
         self.responses.visible = false;
         self.speaker = null;
       }
+	  function testTwo() {
+	  
+	  console.log("OH Baby!");
+	  }
       return new Screen({
         // Screen overrides
         backgroundColor: 0x3a7216,
