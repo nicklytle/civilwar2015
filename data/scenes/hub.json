@@ -12,11 +12,11 @@
       "name": "Harriet Tubman",
       "texture": "tubman.png",
       "scale": 0.2,
-      "x": 1000,
-      "y": 1000,
+      "x": 900,
+      "y": 900,
       "dialog": [
         "Got a lot of bundles of wood headed up this way. Are you a friend of the flying bondsmen?%Yes, I am!|What are you talking about?",
-        "Well I've got some parcel headed to the Freedom Train. Maybe you could help out sometime?|Never mind. Dust an old woman rambling...",
+        "Well I've got some parcel headed to the Freedom Train. Maybe you could help out sometime?|Never mind. Just an old woman rambling...",
 		"#test()|#END"
 	]
     },
@@ -24,8 +24,8 @@
       "name": "General McClellan",
       "texture": "mcclellan.png",
       "scale": 0.2,
-      "x": 2000,
-      "y": 1500,
+      "x": 1000,
+      "y": 1400,
       "dialog": [
         "Well well! A fresh new face! A perfect candidate for a soldier!  Wait, how do I know that you are loyal to the right cause?%I'll prove my loyalty!|Who says I'm loyal?",
 		"You will eh? But how should we do this...|I don't want any talk of that here!",
@@ -57,20 +57,32 @@
 	]
     },
 	{
-      "name": "",
+      "name": "Female Villager",
+      "texture": "harriet.png",
+      "scale": 1.0,
+      "x": 1000,
+      "y": 200,
+      "dialog": [
+	  " Abraham Lincoln is here in town today!  I want to go up and thank him for everything he's done but I'm afraid I'll get nervous..."
+	]
+    },
+	{
+      "name": "Female Villager",
       "texture": "harriet.png",
       "scale": 1.0,
       "x": 1500,
       "y": 1200,
       "dialog": [
+	  " Rumors are that the lady over there is helping runaway slaves get out of the country.",
+	  "I think that's a fine and brave deed, but there's no way I want to get associated with that."
 	]
     },
 	{
       "name": "Harper's Weekly",
       "texture": "newspaper.png",
       "scale": 0.2,
-      "x": 800,
-      "y": 800,
+      "x": 500,
+      "y": 1100,
       "dialog": [
 	  "MAJOR-GENERAL GEORGE G. MEADE, THE NEW COMMANDER OF THE ARMY OF THE POTOMAC.",
 	  "#paper1()"
@@ -91,8 +103,8 @@
       "name": "Harper's Weekly",
       "texture": "newspaper.png",
       "scale": 0.2,
-      "x": 300,
-      "y": 500,
+      "x": 2300,
+      "y": 700,
       "dialog": [
 	  "NEW PORTRAIT OF MAJOR-GENERAL GRANT THE HERO OF VICKSBURG ",
 	  "#paper3()"
@@ -102,8 +114,8 @@
       "name": "Harper's Weekly",
       "texture": "newspaper.png",
       "scale": 0.2,
-      "x": 2200,
-      "y": 200,
+      "x": 200,
+      "y": 550,
       "dialog": [
 	  "THE ARMY OF THE CUMBERLAND.-A TROOP TRAIN PASSING THROUGH THE BIG CUT ON THE LOUISVILLE AND NASHVILLE RAILROAD",
 	  "#paper4()"
@@ -113,11 +125,65 @@
       "name": "Harper's Weekly",
       "texture": "newspaper.png",
       "scale": 0.2,
-      "x": 400,
-      "y": 1800,
+      "x": 600,
+      "y": 2200,
       "dialog": [
 	  " THE SIEGE OF CHARLESTON—THE BOATS FOR THE ATTACK OF GREGG ON THEIR WAY. ",
 	  "#paper5()"
+	]
+    },
+	{
+      "name": "",
+      "texture": "tree.png",
+      "scale": 1,
+      "x": 800,
+      "y": 750,
+      "dialog": [
+	]
+    },
+	{
+      "name": "",
+      "texture": "tree.png",
+      "scale": 1,
+      "x": 1500,
+      "y": 300,
+      "dialog": [
+	]
+    },
+	{
+      "name": "",
+      "texture": "tree.png",
+      "scale": 1,
+      "x": 1700,
+      "y": 300,
+      "dialog": [
+	]
+    },
+	{
+      "name": "",
+      "texture": "tree.png",
+      "scale": 1,
+      "x": 1900,
+      "y": 200,
+      "dialog": [
+	]
+    },
+	{
+      "name": "",
+      "texture": "tree.png",
+      "scale": 1,
+      "x": 2100,
+      "y": 300,
+      "dialog": [
+	]
+    },
+	{
+      "name": "",
+      "texture": "tree.png",
+      "scale": 1,
+      "x": 2100,
+      "y": 500,
+      "dialog": [
 	]
     },
 	{
@@ -1036,29 +1102,69 @@
       "name": "Female Villager",
       "texture": "femalevillager.png",
       "scale": 0.2,
-      "x": 100,
-      "y": 0,
+      "x": 1600,
+      "y": 1000,
       "dialog": [
         "Did you hear about the battle at Hampton Roads?%Yes, I did!|What battle?",
-        "Can you imagine? Iron ships! Apparently that man over there was present during the battle!|A huge battle between two iron ships!  That young man over there was on one of them."
+        "Can you imagine? Iron ships! Apparently that soldier over there was present during the battle!|A huge battle between two iron ships!  That young soldier over there was on one of them."
+      ]
+    },
+	{
+      "name": "Female Villager",
+      "texture": "femalevillager2.png",
+      "scale": 0.2,
+      "x": 500,
+      "y": 1600,
+      "dialog": [
+	  "I've seen all three of my sons head off and fight...the farm just isn't the same without them..."
+      ]
+    },
+    {
+      "name": "Female Villager",
+      "texture": "femalevillager.png",
+      "scale": 0.2,
+      "x": 2000,
+      "y": 1400,
+      "dialog": [
+	  "Both General McClellan and President Lincoln visiting today? It must be a special occassion..."
       ]
     },
     {
       "name": "Female Villager",
       "texture": "femalevillager2.png",
       "scale": 0.2,
-      "x": 400,
-      "y": 0,
+      "x": 1200,
+      "y": 500,
       "dialog": [
         "That Union Soldier told me he just came back from Newport News."
+      ]
+    },
+	 {
+      "name": "Male Villager",
+      "texture": "malevillager.png",
+      "scale": 0.2,
+      "x": 1600,
+      "y": 2000,
+      "dialog": [
+        "When the draft was called, half the town went to go fight.  Men up and left without an issue...not like those rioters in New York."
+      ]
+    },
+	 {
+      "name": "Male Villager",
+      "texture": "malevillager2.png",
+      "scale": 0.2,
+      "x": 200,
+      "y": 2000,
+      "dialog": [
+        "I love getting to see all the updates through The Harper's Ferry.  It's such a detailed look at what's going on!"
       ]
     },
     {
       "name": "Male Villager",
       "texture": "malevillager.png",
       "scale": 0.2,
-      "x": 100,
-      "y": 400,
+      "x": 1600,
+      "y": 2000,
       "dialog": [
         "We're going to show those Yankees, you wait and see! The South is fine as it is - we don't need Lincoln!"
       ]
@@ -1067,7 +1173,7 @@
       "name": "Male Villager",
       "texture": "malevillager2.png",
       "scale": 0.2,
-      "x": 600,
+      "x": 1900,
       "y": 400,
       "dialog": [
         "I don't know what my wife will do if I go to fight. The farm is enough work as it is."
@@ -1077,8 +1183,8 @@
       "name": "Union Soldier",
       "texture": "unionsoldier.png",
       "scale": 0.2,
-      "x": 1100,
-      "y": 0,
+      "x": 2200,
+      "y": 100,
       "dialog": [
         "Do you have time to hear about my experiences on the Monitor?%Tell me more!|Maybe later...",
         "Prepare for an amazing tale!|Some other time, then.",
@@ -1092,7 +1198,7 @@
       "x": 200,
       "y": 1100,
       "dialog": [
-        "The Yankees have no honor. The pride of the Southern Gentlemen will prevail!"
+        "I am a prisoner in this town!  The Yankees have no honor. The pride of the Southern Gentlemen will prevail!"
       ]
     }
   ]
