@@ -21,6 +21,42 @@
 	]
     },
 	{
+      "name": "General McClellan",
+      "texture": "mcclellan.png",
+      "scale": 0.2,
+      "x": 2000,
+      "y": 1500,
+      "dialog": [
+        "Well well! A fresh new face! A perfect candidate for a soldier!  Wait, how do I know that you are loyal to the right cause?%I'll prove my loyalty!|Who says I'm loyal?",
+		"You will eh? But how should we do this...|I don't want any talk of that here!",
+		"I know!  I will test your loyalty! Yes this should be good!|#END",
+		"Let's see...who is the one true Commander in Chief of this Nation?%Jefferson Davis!|Abraham Lincoln!",
+		"WRONG! I can't have a traitor in my army!|Correct! That one was way too easy!",
+		"#END|Hmmmm...let's see now...",
+		"Who is the lead general of the true America?%Ulysses S. Grant!|Robert E. Lee!",
+		"Well obviously!|Traitor! Come back when you're loyal to the cause!",
+		"Alright...one final stumper!|#END",
+		"Our side had a tactical win with a new breed of ironclad ships at Hampton Roads! What was our vessel called?%Monitor|Merrimac",
+		"Seems that you are a true American!  I never should have doubted you for a second.|AHA! I knew I could catch you with that one.  Come back when you are a true American.",
+		"#test2()|#END"
+	]
+    },
+	{
+      "name": "Abraham Lincoln",
+      "texture": "abe.png",
+      "scale": 0.2,
+      "x": 1000,
+      "y": 2000,
+      "dialog": [
+	  "Good day! I'm workshopping a speech that I am going to have to give in Pennysylvania very soon. Would you like to hear some of it?%Sure!|Maybe another time, Mr. President.",
+		"Well okay then. Here it goes...|No problem at all. It's not really done yet anyway",
+		" Eighty-seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal. |#END",
+		"Huh..I still feel like something isn't right...%Maybe a different way to say 87?|It seems perfect as is!",
+		"Hmmm...you may be right.  I'll think on it!  Thank you for your help, young man!|That's very kind of you, but I'm not sure about that...",
+		"#test3()|#END"
+	]
+    },
+	{
       "name": "",
       "texture": "harriet.png",
       "scale": 1.0,
