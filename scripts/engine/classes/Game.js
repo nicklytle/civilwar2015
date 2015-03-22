@@ -56,7 +56,7 @@ define(
       },
 
       onMouseDown: function(point) {
-        this.currentScreen.onMouseDown(point);
+        this.currentScreen.onMouseDown(this.stage.getMousePosition());
       },
 
       setScreen: function(screen) {
@@ -84,7 +84,7 @@ define(
         window.requestAnimationFrame(this.animationCallback);
         this.newTime = new Date();
         this.delta = (this.newTime.getTime() - this.oldTime.getTime()) / 1000.0;
-        if (this.delta > engine.MAX_DELTA) { 
+        if (this.delta > engine.MAX_DELTA) {
           this.delta = engine.MAX_DELTA;
         }
         this.oldTime = this.newTime;
